@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.canyie.dreamland.manager.ui.activities.MainActivity">
+
+    <item
+        android:title="@string/action_search"
+        android:id="@+id/action_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom" />
+    <item
+        android:title="@string/action_reboot"
+        android:id="@+id/action_reboot"/>
+    <item
+        android:title="@string/action_soft_reboot"
+        android:id="@+id/action_soft_reboot" />
+    <item
+        android:title="@string/action_reboot_to_recovery"
+        android:id="@+id/action_reboot_to_recovery" />
+    <item
+        android:title="@string/about"
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+</menu>

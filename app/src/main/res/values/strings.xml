@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Dreamland Manager</string>
+    <string name="action_settings">Settings</string>
+    <string name="status">Status</string>
+    <string name="modules">Modules</string>
+    <string name="applications">Apps</string>
+    <string name="device_info">Device Info</string>
+    <string name="text_android_version">Android %s (API %d)</string>
+    <string name="text_cpu_info">%s (%s)</string>
+    <string name="verified_boot_state_unknown">Verified Boot state is unknown</string>
+    <string name="verified_boot_state_deactivated">Verified Boot is deactivated</string>
+    <string name="verified_boot_state_active">Verified Boot is active</string>
+    <string name="verified_boot_state_not_detected">No Verified Boot detected</string>
+    <string name="selinux_mode_disabled">SELinux is disabled</string>
+    <string name="selinux_mode_permissive">SELinux mode: permissive</string>
+    <string name="selinux_mode_enforcing">SELinux mode: enforcing</string>
+    <string name="action_search">Search</string>
+    <string name="about">About</string>
+    <string name="app_description">Dreamland Framework(developing): A third-party Xposed framework.</string>
+    <string name="about_my_blog">Visit my blog</string>
+    <string name="about_join_qq_group">Join my QQ group</string>
+    <string name="about_alert_qq_is_unavailable">You do not have QQ installed or the version is too low.</string>
+    <string name="about_version">Manager version: %s(%d)</string>
+    <string name="module_error_not_support">Not support now, please try to update it or contact its developer.</string>
+    <string name="alert_app_cannot_open">This app has no main activity, so it cannot be opened.</string>
+    <string name="alert_module_cannot_open">This module has no main activity, so it cannot be opened.</string>
+    <string name="module_action_launch">Launch UI</string>
+    <string name="module_action_info">Module info</string>
+    <string name="module_action_uninstall">Uninstall</string>
+    <string name="about_thanks">Credits</string>
+    <string name="about_thanks_alert_content">No English version now :(…</string>
+    <string name="ok">OK</string>
+    <string name="alert_wait_loading_complete">Please wait for loading to complete…</string>
+    <string name="action_reboot">Reboot</string>
+    <string name="action_soft_reboot">Soft reboot</string>
+    <string name="action_reboot_to_recovery">Reboot to recovery</string>
+    <string name="reboot_failed_alert_message">Reboot failed. Please check the following:\n\n
+        Have you granted Root permissions?\n\n
+If this does not resolve the issue, please use the device\'s reboot function.</string>
+    <string name="reboot_failed_alert_title">Reboot failed</string>
+    <string name="reboot_confirm_alert">Do you want to reboot the device now?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="dont_show_again">Don\'t show again</string>
+    <string name="app_action_launch">Launch</string>
+    <string name="app_action_info">App info</string>
+    <string name="app_action_force_stop">Force stop</string>
+    <string name="module_state_changed_alert_content">In Dreamland framework, you ’ll also need to enable the target app and forcibly stop it in the Apps page for it to take effect. If the module acts on the system, you may need to reboot the device for it to take effect.</string>
+    <string name="app_state_changed_alert_content">In Dreamland framework, enabling an application simply causes the application to load all enabled modules at the next startup, so you must enable the required modules in the Modules page and forcefully stop the application to take effect; if the application is a system application, Then you may also need to reboot the device to take effect.\n\n
+     Tip: Press and hold an application item to quickly and forcibly stop the application.</string>
+    <string name="install_or_update">Install/Update</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="install_warning_title">Be careful!</string>
+    <string name="install_warning_content">Currently, Dreamland framework is not stable. Installation may permanently damage your device. It is not recommended for ordinary users to install and use. \nDo you want to continue the installation?</string>
+    <string name="str_continue">Continue</string>
+    <string name="permission_request_rationale_title_for_install">Please grant permission</string>
+    <string name="permission_request_rationale_message_for_install">We need storage permissions for download. \nGenerally, the external storage location (/sdcard/Android/&lt;package name&gt;/) that belongs to the application can be accessed without storage permissions, but some devices have privately modified this behavior, and cannot be used without storage permissions. Please grant these permissions for the app to function properly.</string>
+    <string name="no">No</string>
+    <string name="shell_process_normal_exit">The script exits normally.</string>
+    <string name="shell_process_unexpected_exit">The script exits unexpectedly: exit code %d.</string>
+
+</resources>

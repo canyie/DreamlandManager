@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">梦境框架</string>
+    <string name="action_settings">设置</string>
+    <string name="status">状态</string>
+    <string name="modules">模块</string>
+    <string name="applications">应用</string>
+    <string name="device_info">设备信息</string>
+    <string name="text_android_version">安卓版本 %s (API %d)</string>
+    <string name="text_cpu_info">%s (%s)</string>
+    <string name="verified_boot_state_unknown">引导验证程序状态未知</string>
+    <string name="verified_boot_state_deactivated">引导验证程序已禁用</string>
+    <string name="verified_boot_state_active">引导验证程序已启用</string>
+    <string name="verified_boot_state_not_detected">未检测到引导验证程序</string>
+    <string name="selinux_mode_disabled">SELinux已禁用</string>
+    <string name="selinux_mode_permissive">SELinux运行在宽容模式</string>
+    <string name="selinux_mode_enforcing">SELinux运行在强制模式</string>
+    <string name="action_search">搜索</string>
+    <string name="about">关于</string>
+    <string name="app_description">梦境框架是一个类似Xposed的框架，正在开发。</string>
+    <string name="about_my_blog">欢迎访问我的博客</string>
+    <string name="about_join_qq_group">加入QQ群</string>
+    <string name="about_alert_qq_is_unavailable">您没有安装QQ或者版本过低。</string>
+    <string name="about_version">管理器版本号：%s(%d)</string>
+    <string name="module_error_not_support">暂不支持，请尝试更新此模块或联系它的开发者。</string>
+    <string name="alert_app_cannot_open">此应用没有主界面，所以无法启动。</string>
+    <string name="alert_module_cannot_open">此模块没有主界面，所以无法启动。</string>
+    <string name="module_action_launch">打开用户界面</string>
+    <string name="module_action_info">模块信息</string>
+    <string name="module_action_uninstall">卸载</string>
+    <string name="about_thanks">致谢</string>
+    <string name="about_thanks_alert_content">
+        感谢 Xposed原作者 rovo89\n感谢SandHook作者 Swift Gan提供ART Hook库\n感谢爱奇艺开源的xHook库\n感谢VirtualXposed、太极作者维术\n感谢谷歌开源的AndroidX库、Gson库\n感谢Square开源的okhttp、okio库\n感谢medyo开源的android-about-page库\n还有许许多多的小伙伴在给我支持，谢谢你们！梦境框架离不开你们！谢谢！
+    </string>
+    <string name="ok">好的</string>
+    <string name="alert_wait_loading_complete">客官不要心急，还没加载完呢……</string>
+    <string name="action_reboot">重启</string>
+    <string name="action_soft_reboot">软重启</string>
+    <string name="action_reboot_to_recovery">重启至恢复模式</string>
+    <string name="reboot_failed_alert_message">重启失败。请检查以下项目：\n\n
+        您是否已经授予Root权限？\n\n
+如果无法解决此问题，请使用设备的重启功能。</string>
+    <string name="reboot_failed_alert_title">重启失败</string>
+    <string name="reboot_confirm_alert">您要现在重启您的设备吗？</string>
+    <string name="yes">是的</string>
+    <string name="cancel">取消</string>
+    <string name="dont_show_again">不再提示</string>
+    <string name="app_action_launch">打开</string>
+    <string name="app_action_info">应用信息</string>
+    <string name="app_action_force_stop">强行停止</string>
+    <string name="module_state_changed_alert_content">在梦境框架中，您启用模块后还需要在“应用”页中启用目标应用并强行停止该应用才能生效。如果该模块作用于系统，则您可能还需要重启设备才能生效。</string>
+    <string name="app_state_changed_alert_content">在梦境框架中，启用应用只是让该应用在下次启动时加载所有启用的模块，所以您必须在“模块”页中启用所需的模块并强行停止该应用才能生效；如果该应用是系统应用，则您可能还需要重启设备才能生效。\n\n
+    提示：长按应用项可以快速强行停止该应用。</string>
+    <string name="install_or_update">安装/更新</string>
+    <string name="uninstall">卸载</string>
+    <string name="install_warning_title">警告</string>
+    <string name="install_warning_content">目前，梦境框架并不稳定，安装可能会永久损坏您的设备，不建议普通用户安装和使用。\n您想要继续安装吗？</string>
+    <string name="str_continue">继续</string>
+    <string name="permission_request_rationale_title_for_install">请授予权限</string>
+    <string name="permission_request_rationale_message_for_install">我们需要存储权限用于下载。\n通常情况下，属于应用的外部存储位置（/sdcard/Android/&lt;包名&gt;/）不需要存储权限即可访问，但有部分设备私自纂改了此行为，如果没有存储权限就无法使用，所以请授予这些权限让应用能够正常运行。</string>
+    <string name="no">No</string>
+    <string name="shell_process_normal_exit">脚本已正常退出。</string>
+    <string name="shell_process_unexpected_exit">脚本意外退出：退出代码 %d。</string>
+</resources>

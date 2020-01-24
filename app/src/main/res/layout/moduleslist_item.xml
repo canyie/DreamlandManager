@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_gravity="center"
+    android:layout_marginBottom="3dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="3dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:longClickable="true"
+    android:foreground="?android:attr/selectableItemBackground" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
+        android:padding="5dp">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/module_icon_wrapper"
+            android:padding="5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/module_icon"
+                tools:src="@mipmap/ic_launcher" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/module_icon_wrapper"
+            app:layout_constraintTop_toTopOf="@id/module_icon_wrapper"
+            app:layout_constraintRight_toLeftOf="@id/module_version"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/module_name"
+            tools:text="Dreamland Manager" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/module_name"
+            app:layout_constraintLeft_toRightOf="@id/module_name"
+            app:layout_constraintRight_toLeftOf="@id/module_checkbox"
+            app:layout_constraintHorizontal_weight="1"
+            android:layout_marginStart="5dp"
+            android:id="@+id/module_version"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="1.0.0"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/module_name"
+            app:layout_constraintTop_toBottomOf="@id/module_name"
+            app:layout_constraintRight_toLeftOf="@id/module_checkbox"
+            app:layout_constraintHorizontal_weight="1"
+            android:id="@+id/module_description"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="Dreamland Module Manager" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/module_description"
+            app:layout_constraintLeft_toLeftOf="@id/module_description"
+            android:id="@+id/module_error"
+            android:textColor="@color/color_error"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="gone"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/module_checkbox"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
