@@ -10,7 +10,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author canyie
- * @date 2019/12/21.
  */
 public final class ModuleManager extends GsonBasedManager<ConcurrentHashMap<String, RemoteModuleInfo>> {
     ModuleManager() {

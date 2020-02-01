@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * @author canyie
- * @date 2019/12/10.
  */
 public class MainPagerAdapter extends FragmentPagerAdapter {
     private final PageFragment[] mFragments;

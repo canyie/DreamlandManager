@@ -12,7 +12,6 @@ import java.util.StringTokenizer;
 
 /**
  * @author canyie
- * @date 2020/1/3.
  */
 public final class AppManager extends BaseManager<ConcurrentHashSet<String>> {
     AppManager() {
@@ -32,7 +31,6 @@ public final class AppManager extends BaseManager<ConcurrentHashSet<String>> {
         }
         notifyDataChanged();
     }
-
 
     @NonNull @Override protected String serialize(ConcurrentHashSet<String> set) {
         StringBuilder sb = new StringBuilder();

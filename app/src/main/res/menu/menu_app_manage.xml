@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/app_action_launch"
+        android:id="@+id/app_action_launch" />
+    <item
+        android:title="@string/app_action_info"
+        android:id="@+id/app_action_info" />
+    <item
+        android:title="@string/app_action_force_stop"
+        android:id="@+id/app_action_force_stop"/>
+</menu>

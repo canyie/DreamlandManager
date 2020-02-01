@@ -4,9 +4,8 @@ import com.canyie.dreamland.manager.utils.reflect.Reflection;
 
 /**
  * @author canyie
- * @date 2019/12/26.
  */
-public final class VMRuntime {
+@SuppressWarnings("WeakerAccess") public final class VMRuntime {
     public static final String NAME = "dalvik.system.VMRuntime";
     public static final Reflection<?> REF = Reflection.on(NAME);
     public static final Reflection.MethodWrapper getRuntime = REF.method("getRuntime");

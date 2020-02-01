@@ -1,20 +1,43 @@
 apply plugin: 'com.android.application'
 
 android {
+    Properties properties = new Properties()
+    InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream()
+    properties.load(inputStream)
+    inputStream.close()
+
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.canyie.dreamland.manager"
         minSdkVersion 24
-        targetSdkVersion 29
+        targetSdkVersion 27
+        // If targetSdkVersion >= 28, we are in a new SELinux sandbox
+        // Chinese: https://source.android.google.cn/security/app-sandbox
+        // English: https://source.android.com/security/app-sandbox
         versionCode 1
         versionName "0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+    signingConfigs {
         release {
+            storeFile file(properties['key.file'])
+            storePassword properties['key.password']
+            keyAlias properties['key.alias']
+            keyPassword properties['key.alias.password']
+        }
+    }
+    buildTypes {
+        debug {
             minifyEnabled false
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -29,8 +52,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.14.4'
-    implementation 'com.squareup.okio:okio:1.17.5'
+    //implementation 'com.squareup.okhttp3:okhttp:3.14.4'
+    //implementation 'com.squareup.okio:okio:1.17.5'
+    // okhttp and okio is unused now
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.medyo:android-about-page:1.2.5'
     testImplementation 'junit:junit:4.12'

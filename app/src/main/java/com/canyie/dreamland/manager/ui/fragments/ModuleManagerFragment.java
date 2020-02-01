@@ -27,7 +27,6 @@ import java.util.List;
 
 /**
  * @author canyie
- * @date 2019/12/10.
  */
 public class ModuleManagerFragment extends PageFragment implements SearchView.OnQueryTextListener, ModuleListAdapter.OnModuleStateChangedListener {
     private ModuleListAdapter mAdapter;

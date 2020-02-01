@@ -7,7 +7,6 @@ import com.canyie.dreamland.manager.AppGlobals;
 
 /**
  * @author canyie
- * @date 2019/12/10.
  */
 public abstract class PageFragment extends BaseFragment {
     private CharSequence mTitle;

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">梦境框架</string>
+    <string name="app_name">梦境</string>
     <string name="action_settings">设置</string>
     <string name="status">状态</string>
     <string name="modules">模块</string>
@@ -28,9 +28,7 @@
     <string name="module_action_info">模块信息</string>
     <string name="module_action_uninstall">卸载</string>
     <string name="about_thanks">致谢</string>
-    <string name="about_thanks_alert_content">
-        感谢 Xposed原作者 rovo89\n感谢SandHook作者 Swift Gan提供ART Hook库\n感谢爱奇艺开源的xHook库\n感谢VirtualXposed、太极作者维术\n感谢谷歌开源的AndroidX库、Gson库\n感谢Square开源的okhttp、okio库\n感谢medyo开源的android-about-page库\n还有许许多多的小伙伴在给我支持，谢谢你们！梦境框架离不开你们！谢谢！
-    </string>
+    <string name="about_thanks_alert_content">感谢原版Xposed作者rovo89，SandHook作者Swift Gan，xhook作者爱奇艺；还有许许多多的小伙伴在帮助我，谢谢你们 :)</string>
     <string name="ok">好的</string>
     <string name="alert_wait_loading_complete">客官不要心急，还没加载完呢……</string>
     <string name="action_reboot">重启</string>
@@ -60,4 +58,36 @@
     <string name="no">No</string>
     <string name="shell_process_normal_exit">脚本已正常退出。</string>
     <string name="shell_process_unexpected_exit">脚本意外退出：退出代码 %d。</string>
+    <string name="framework_state_active">梦境框架已激活！（版本号 %d）</string>
+    <string name="framework_state_disabled">梦境框架未启用。</string>
+    <string name="framework_state_installed_but_not_active">梦境框架已被完整安装，但未激活。</string>
+    <string name="framework_state_broken">梦境框架核心文件已损坏，请重新安装或卸载框架。</string>
+    <string name="framework_state_not_installed">梦境框架未安装。</string>
+    <string name="loading">正在加载……</string>
+    <string name="install_issue">该设备暂不支持梦境框架（支持安卓版本最低7.0（SDK 24）并且CPU架构为arm-v7或arm64且为ART运行时）。</string>
+    <string name="dex2oat_warning_alert_title">你想要编译梦境框架的核心jar包为oat吗？</string>
+    <string name="dex2oat_warning_alert_content">把核心jar编译为oat文件理论上可提高性能，但目前尚不稳定，您确定要继续吗？</string>
+    <string name="dex2oat_running_alert">请等待编译完成…</string>
+    <string name="dex2oat_success">编译梦境框架核心jar文件成功！</string>
+    <string name="dex2oat_failed">编译梦境框架核心jar文件失败！</string>
+    <string name="previous_job_not_completed">上一个任务还没执行完呢…</string>
+    <string name="alert_wait_install_complete">请等待安装/卸载完成……</string>
+    <string name="install_failed">安装/卸载梦境框架失败。</string>
+    <string name="install_success">安装/卸载成功！现在您只需要重新启动这台设备即可让您的更改生效。</string>
+    <string name="phase_checking_zip">正在检查框架包合法性……</string>
+    <string name="phase_unzipping">正在解包框架包…</string>
+    <string name="phase_executing_script">正在执行安装/卸载脚本…</string>
+    <string name="phase_cleanup">正在恢复系统状态…</string>
+    <string name="alert_wait_framework_download_complete">请等待框架包下载完成……</string>
+    <string name="alert_framework_zip_download_failed">梦境框架包下载失败。</string>
+    <string name="uninstall_alert">你要卸载梦境框架吗？这样将会失去梦境框架提供的功能。</string>
+    <string name="install_error_bad_zip">此框架包已损坏。</string>
+    <string name="error_type">错误类型：</string>
+    <string name="error_info">错误详细信息：</string>
+    <string name="install_error_device_not_supported">此框架包不支持您的设备。</string>
+    <string name="install_error_unknown_io_error">未知I/O错误。</string>
+    <string name="install_error_unknown_script_error">未知脚本错误。</string>
+    <string name="install_error_unknown_error">未知错误。</string>
+    <string name="install_error_framework_required_manager_too_high">此框架包需要更高的管理器版本。请更新您的梦境框架管理器并重试。</string>
+    <string name="maybe_no_root_alert">您是否已经授予root权限？</string>
 </resources>

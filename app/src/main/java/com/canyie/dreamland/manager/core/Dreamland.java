@@ -5,18 +5,18 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.os.Build;
 
 import androidx.annotation.Keep;
 
 import com.canyie.dreamland.manager.BuildConfig;
 import com.canyie.dreamland.manager.core.installation.Installer;
-import com.canyie.dreamland.manager.ui.activities.InstallationActivity;
 import com.canyie.dreamland.manager.utils.DLog;
 import com.canyie.dreamland.manager.utils.DeviceUtils;
 import com.canyie.dreamland.manager.utils.FileUtils;
 import com.canyie.dreamland.manager.utils.Preconditions;
 import com.canyie.dreamland.manager.utils.Processes;
+import com.canyie.dreamland.manager.utils.RuntimeHelper;
 import com.canyie.dreamland.manager.utils.reflect.Reflection;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,6 +30,8 @@ import java.util.List;
 public final class Dreamland {
     private static final String TAG = "Dreamland";
     static final File BASE_DIR = new File("/data/dreamland/");
+    public static final File CORE_JAR_FILE = new File("/system/framework/dreamland.jar");
+    private static final File DISABLE_FLAG_FILE = new File(BASE_DIR, "disable");
     private static final String MANAGER_PACKAGE_NAME = BuildConfig.APPLICATION_ID;
     private static final String XPOSED_MODULE = "xposedmodule";
     private static final String XPOSED_MODULE_DESCRIPTION = "xposeddescription";
@@ -51,7 +53,24 @@ public final class Dreamland {
     }
 
     public static boolean isActive() {
-        return getVersion() != -1;
+        return getVersion() > 0;
+    }
+
+    public static boolean isDisabled() {
+        return DISABLE_FLAG_FILE.exists();
+    }
+
+    public static boolean setEnabled(boolean enable) {
+        if (enable) {
+            return DISABLE_FLAG_FILE.delete();
+        } else {
+            try {
+                return DISABLE_FLAG_FILE.createNewFile();
+            } catch (IOException e) {
+                DLog.e(TAG, "Failed to create disable flag file", e);
+                return false;
+            }
+        }
     }
 
     public static boolean isInstalled() {
@@ -61,7 +80,7 @@ public final class Dreamland {
         } else {
             soPath = "/system/lib/libdreamland.so";
         }
-        return FileUtils.isExisting(soPath) || FileUtils.isExisting("/system/framework/dreamland.jar");
+        return FileUtils.isExisting(soPath) || CORE_JAR_FILE.exists();
     }
 
     public static boolean isCompleteInstalled() {
@@ -75,7 +94,7 @@ public final class Dreamland {
             return false;
         }
 
-        if (!FileUtils.isExisting("/system/framework/dreamland.jar")) {
+        if (!CORE_JAR_FILE.exists()) {
             return false;
         }
 
@@ -97,6 +116,12 @@ public final class Dreamland {
         return out[0];
     }
 
+    public static boolean isSupported() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+                && DeviceUtils.isArmV7OrArm64()
+                && RuntimeHelper.isArt();
+    }
+
     public static List<AppInfo> getAppInfos(Context context) {
         PackageManager pm = context.getPackageManager();
         List<ApplicationInfo> rawAppInfos = pm.getInstalledApplications(0);
@@ -105,6 +130,15 @@ public final class Dreamland {
         for (ApplicationInfo applicationInfo : rawAppInfos) {
             if (applicationInfo.uid == Processes.UID_SYSTEM) continue; // Can't hook java methods in the process now...
             if (MANAGER_PACKAGE_NAME.equals(applicationInfo.packageName)) continue;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P
+                    && applicationInfo.targetSdkVersion >= Build.VERSION_CODES.P) {
+                // In Android 9, if the app's targetSdkVersion >= P, it running in a
+                // different SELinux sandbox (has a different SELinux context), so it
+                // can't read our properties.
+                // See https://source.android.com/security/app-sandbox or
+                // https://source.android.google.cn/security/app-sandbox (For China user)
+                continue;
+            }
             appInfos.add(new AppInfo(pm, manager, applicationInfo));
         }
         return appInfos;
@@ -162,14 +196,6 @@ public final class Dreamland {
         return getVersionInternal.callStatic();
     }
 
-    @Keep private static int getVersionInternal() {
-        return -1;
-    }
-
-    public static void onIPCServiceStart() {
-        isIPCServiceRunning = true;
-    }
-
     public static void onIPCServiceDestroy() {
         isIPCServiceRunning = false;
     }
@@ -178,6 +204,13 @@ public final class Dreamland {
         return isIPCServiceRunning;
     }
 
+    @Keep private static int getVersionInternal() {
+        return -1;
+    }
+
+    public static void onIPCServiceStart() {
+        isIPCServiceRunning = true;
+    }
     private static final class IH {
         static final Installer INSTALLER = new Installer();
     }

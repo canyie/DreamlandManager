@@ -12,7 +12,6 @@ import java.io.IOException;
 
 /**
  * @author canyie
- * @date 2020/1/2.
  */
 @SuppressWarnings("WeakerAccess")
 public abstract class BaseManager<T> {

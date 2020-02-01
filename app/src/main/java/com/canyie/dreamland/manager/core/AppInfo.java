@@ -4,11 +4,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.Keep;
+
 /**
  * @author canyie
- * @date 2019/12/17.
  */
-public final class AppInfo {
+@Keep public final class AppInfo {
     public String name;
     public String packageName;
     public Drawable icon;

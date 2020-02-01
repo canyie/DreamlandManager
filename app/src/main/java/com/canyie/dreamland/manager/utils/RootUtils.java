@@ -115,7 +115,7 @@ public final class RootUtils {
     public static void moveFile(String src, String dest) throws IOException {
         src = escape(src);
         dest = escape(dest);
-        int code = exec("mv \"" + src + "\" \"" + dest + "\"", false);
+        int code = exec("mv -f \"" + src + "\" \"" + dest + "\"", false);
         if (code != Shell.EXIT_STATUS_SUCCESS) {
             throw new IOException("mv failed: code " + code);
         }
@@ -130,7 +130,7 @@ public final class RootUtils {
     }
 
     private static int exec(String[] commands, boolean allowExecOnMainThread) throws IOException {
-        Shell.Result r = Shell.su().add(commands)/*.allowExecOnMainThread(allowExecOnMainThread)*/.start();
+        Shell.Result r = Shell.su().add(commands).allowExecOnMainThread(allowExecOnMainThread).start();
         return r.waitInterruptible();
     }
 

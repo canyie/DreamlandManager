@@ -31,20 +31,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/app_name"
+        android:layout_marginTop="2dp"
         app:layout_constraintLeft_toRightOf="@id/app_icon_wrapper"
         app:layout_constraintTop_toTopOf="@id/app_icon_wrapper"
-        android:layout_marginTop="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         tools:text="@string/app_name" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/app_icon_wrapper"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@id/app_name"
         android:id="@+id/app_package_name"
         android:textAppearance="?android:attr/textAppearanceSmall"
         tools:text="com.canyie.dreamland.manager" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/app_icon_wrapper"
+        app:layout_constraintTop_toBottomOf="@id/app_package_name"
+        android:id="@+id/app_error"
+        android:textColor="@color/color_error"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="gone"
+        tools:text="Dreamland framework is not installed."/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

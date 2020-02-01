@@ -29,7 +29,6 @@ import java.util.List;
 
 /**
  * @author canyie
- * @date 2019/12/17.
  */
 public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> implements Filterable {
     private Context context;
@@ -55,16 +54,21 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         holder.appPackageName.setText(appInfo.packageName);
         holder.appIcon.setImageDrawable(appInfo.icon);
         holder.appCheckbox.setChecked(appInfo.enabled);
-        holder.appCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            appInfo.setEnabled(isChecked);
-            if (mAppStateChangedListener != null) mAppStateChangedListener.onAppStateChanged();
-        });
-
         holder.itemView.setOnClickListener(v -> {
             if (!Intents.openAppUserInterface(context, appInfo.packageName)) {
                 ToastCompat.showToast(context, R.string.alert_app_cannot_open);
             }
         });
+        if (Dreamland.isInstalled()) {
+            holder.appCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                appInfo.setEnabled(isChecked);
+                if (mAppStateChangedListener != null) mAppStateChangedListener.onAppStateChanged();
+            });
+        } else {
+            holder.appError.setVisibility(View.VISIBLE);
+            holder.appError.setText(R.string.framework_state_not_installed);
+            holder.appCheckbox.setEnabled(false);
+        }
     }
 
     @Override public int getItemCount() {
@@ -97,6 +101,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         TextView appPackageName;
         ImageView appIcon;
         CheckBox appCheckbox;
+        TextView appError;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,6 +109,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
             appPackageName = itemView.findViewById(R.id.app_package_name);
             appIcon = itemView.findViewById(R.id.app_icon);
             appCheckbox = itemView.findViewById(R.id.app_checkbox);
+            appError = itemView.findViewById(R.id.app_error);
         }
     }
 

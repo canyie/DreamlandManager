@@ -2,11 +2,10 @@ package mirror.android.os;
 
 import com.canyie.dreamland.manager.utils.reflect.Reflection;
 /**
- * Mirror class of {@link android.os.SELinux}
+ * Mirror class of android.os.SELinux
  * @author canyie
- * @date 2019/12/21.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class SELinux {
     public static final String NAME = "android.os.SELinux";
     public static final Reflection<?> REF = Reflection.on(NAME);

@@ -1,12 +1,8 @@
 package com.canyie.dreamland.manager.ui.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -17,16 +13,12 @@ import android.widget.TextView;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuPopupHelper;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.canyie.dreamland.manager.R;
 import com.canyie.dreamland.manager.core.Dreamland;
 import com.canyie.dreamland.manager.core.ModuleInfo;
-import com.canyie.dreamland.manager.core.ModuleManager;
 import com.canyie.dreamland.manager.ui.fragments.ModuleManagerFragment;
-import com.canyie.dreamland.manager.ui.widgets.CMRecyclerView;
 import com.canyie.dreamland.manager.utils.Intents;
 import com.canyie.dreamland.manager.utils.ToastCompat;
 
@@ -35,7 +27,6 @@ import java.util.List;
 
 /**
  * @author canyie
- * @date 2019/12/18.
  */
 public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.ViewHolder> implements Filterable {
     private ModuleManagerFragment mFragment;
@@ -63,7 +54,11 @@ public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.Vi
         holder.version.setText(module.version);
         holder.icon.setImageDrawable(module.icon);
         holder.checkbox.setChecked(module.enabled);
-        if (module.supported) {
+        if (!Dreamland.isInstalled()) {
+            holder.error.setText(R.string.framework_state_not_installed);
+            holder.error.setVisibility(View.VISIBLE);
+            holder.checkbox.setEnabled(false);
+        } else if (module.supported) {
             holder.checkbox.setOnCheckedChangeListener((view, isChecked) -> {
                 module.setEnabled(isChecked);
                 if (mModuleStateChangedListener != null) mModuleStateChangedListener.onModuleStateChanged();

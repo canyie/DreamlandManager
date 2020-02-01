@@ -8,7 +8,6 @@ import mirror.android.os.SystemProperties;
 
 /**
  * @author canyie
- * @date 2019/12/12.
  */
 public final class OSUtils {
     public static final String UNKNOWN = DeviceUtils.UNKNOWN;
@@ -52,7 +51,7 @@ public final class OSUtils {
 
         Method hasSmartBar;
         try {
-            //noinspection JavaReflectionMemberAccess
+            // noinspection JavaReflectionMemberAccess
             hasSmartBar = Build.class.getMethod("hasSmartBar");
         } catch (NoSuchMethodException ignored) {
             hasSmartBar = null;

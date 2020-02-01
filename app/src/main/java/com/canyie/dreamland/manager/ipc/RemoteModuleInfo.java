@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 
 /**
  * @author canyie
- * @date 2019/12/22.
  */
 public final class RemoteModuleInfo implements Parcelable {
     public String name;

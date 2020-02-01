@@ -1,7 +1,5 @@
 package com.canyie.dreamland.manager.utils;
 
-import android.util.Log;
-
 import androidx.annotation.Nullable;
 
 import java.io.File;

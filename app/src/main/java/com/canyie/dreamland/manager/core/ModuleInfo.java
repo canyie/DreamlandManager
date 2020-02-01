@@ -2,11 +2,12 @@ package com.canyie.dreamland.manager.core;
 
 import android.graphics.drawable.Drawable;
 
+import androidx.annotation.Keep;
+
 /**
  * @author canyie
- * @date 2019/12/18.
  */
-public final class ModuleInfo {
+@Keep public final class ModuleInfo {
     public String name;
     public String packageName;
     public String description;

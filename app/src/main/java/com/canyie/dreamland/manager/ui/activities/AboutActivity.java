@@ -1,9 +1,9 @@
 package com.canyie.dreamland.manager.ui.activities;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -11,7 +11,16 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.canyie.dreamland.manager.BuildConfig;
 import com.canyie.dreamland.manager.R;
+import com.canyie.dreamland.manager.core.Dreamland;
+import com.canyie.dreamland.manager.utils.ArtDexOptimizer;
+import com.canyie.dreamland.manager.utils.DLog;
+import com.canyie.dreamland.manager.utils.Dialogs;
 import com.canyie.dreamland.manager.utils.Intents;
+import com.canyie.dreamland.manager.utils.RootUtils;
+import com.canyie.dreamland.manager.utils.Threads;
+
+import java.io.File;
+import java.io.IOException;
 
 import mehdi.sakout.aboutpage.AboutPage;
 import mehdi.sakout.aboutpage.Element;
@@ -40,8 +49,8 @@ public class AboutActivity extends BaseActivity implements View.OnLongClickListe
         actionBar.setTitle(R.string.about);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        /*ImageView aboutIcon = requireView(mehdi.sakout.aboutpage.R.id.image);
-        aboutIcon.setOnLongClickListener(this);*/
+        View aboutIcon = requireView(mehdi.sakout.aboutpage.R.id.image);
+        aboutIcon.setOnLongClickListener(this);
     }
 
     private Element createVersionElement() {
@@ -82,8 +91,43 @@ public class AboutActivity extends BaseActivity implements View.OnLongClickListe
     }
 
     @Override public boolean onLongClick(View v) {
-        // Hum... do nothing now. What can I do?
+        if (Dreamland.CORE_JAR_FILE.exists()) {
+            Dialogs.create(this)
+                    .title(R.string.dex2oat_warning_alert_title)
+                    .message(R.string.dex2oat_warning_alert_content)
+                    .positiveButton(R.string.str_continue, dialogInfo -> startDex2OatAndShowProgressDialog())
+                    .negativeButton(R.string.cancel, null)
+                    .showIfActivityActivated();
+            return true;
+        }
         return false;
+    }
+
+    void startDex2OatAndShowProgressDialog() {
+        if (isFinishing() || isDestroyed()) return;
+        ProgressDialog progressDialog = ProgressDialog.show(this, null, getString(R.string.dex2oat_running_alert), true, false);
+        Threads.getDefaultExecutor().execute(() -> {
+            String oatFilename = ArtDexOptimizer.getOatNameInDalvikCache(Dreamland.CORE_JAR_FILE.getAbsolutePath());
+            File cacheOatFile = new File(getCacheDir(), oatFilename);
+            String cacheOatPath = cacheOatFile.getAbsolutePath();
+            boolean success;
+            try {
+                ArtDexOptimizer.compile(Dreamland.CORE_JAR_FILE.getAbsolutePath(), cacheOatPath);
+                RootUtils.moveFile(cacheOatPath, ArtDexOptimizer.getOatPathInDalvikCache(oatFilename));
+                success = true;
+            } catch (IOException e) {
+                DLog.e("ArtDexOptimizer", "Failed to compile core jar and move oat file to dalvik-cache", e);
+                success = false;
+            } finally {
+                // noinspection ResultOfMethodCallIgnored
+                cacheOatFile.delete();
+            }
+            final boolean finalSuccess = success;
+            Threads.execOnMainThread(() -> {
+                progressDialog.dismiss();
+                toast(finalSuccess ? R.string.dex2oat_success : R.string.dex2oat_failed);
+            });
+        });
     }
 
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {

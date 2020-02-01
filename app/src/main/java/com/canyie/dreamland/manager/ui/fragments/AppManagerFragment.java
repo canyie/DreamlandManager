@@ -28,7 +28,6 @@ import java.util.List;
 
 /**
  * @author canyie
- * @date 2019/12/11.
  */
 public class AppManagerFragment extends PageFragment implements SearchView.OnQueryTextListener, AppListAdapter.OnAppStateChangedListener {
     private AppListAdapter mAdapter;

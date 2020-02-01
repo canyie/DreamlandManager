@@ -4,7 +4,6 @@ import mirror.dalvik.system.VMRuntime;
 
 /**
  * @author canyie
- * @date 2019/12/26.
  */
 public final class RuntimeHelper {
     private static final int GC_MIN_TIME = 60 * 1000;

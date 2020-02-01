@@ -8,17 +8,20 @@ import mirror.android.os.SystemProperties;
 /**
  * @author canyie\
  */
-public final class DeviceUtils {
+@SuppressWarnings("WeakerAccess") public final class DeviceUtils {
     @SuppressWarnings("deprecation")
     public static final String CPU_ABI = Build.CPU_ABI;
-    public static final String CPU_ARCH = getCPUArch(CPU_ABI);
+    public static final String CPU_ARCH = getCPUArch();
+    public static final String CPU_ISA = getCPUInstructionSet();
+
     public static final String UNKNOWN = "unknown";
 
     private DeviceUtils() {
     }
 
     @SuppressWarnings("deprecation")
-    private static String getCPUArch(String abi) {
+    private static String getCPUArch() {
+        final String abi = CPU_ABI;
         if ("arm64-v8a".equals(abi)) {
             return "arm64";
         } else if ("x86_64".equals(abi)) {
@@ -37,6 +40,16 @@ public final class DeviceUtils {
             return "arm";
         } else {
             return UNKNOWN;
+        }
+    }
+
+    private static String getCPUInstructionSet() {
+        switch (CPU_ARCH) {
+            case "arm-v7":
+            case "arm-v5":
+                return "arm";
+            default:
+                return CPU_ARCH;
         }
     }
 
@@ -87,5 +100,9 @@ public final class DeviceUtils {
 
     public static boolean isSony() {
         return "sony".equalsIgnoreCase(android.os.Build.BRAND);
+    }
+
+    public static boolean isArmV7OrArm64() {
+        return "arm64".equals(CPU_ARCH) || "arm-v7".equals(CPU_ARCH);
     }
 }

@@ -1,37 +1,10 @@
 package com.canyie.dreamland.manager.utils;
 
-import android.text.TextUtils;
-
-import androidx.annotation.IntRange;
-import androidx.annotation.MainThread;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.Size;
-
-import com.canyie.dreamland.manager.AppGlobals;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.security.MessageDigest;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okio.BufferedSink;
-import okio.BufferedSource;
-import okio.Okio;
-
 /**
  * @author canyie
  */
 public final class OkHttp {
-    private static final String TAG = "OkHttp";
+/*    private static final String TAG = "OkHttp";
     private static final OkHttpClient sOkHttpClient = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(1, TimeUnit.MINUTES)
@@ -261,5 +234,5 @@ public final class OkHttp {
         default void onVerifyFailed(DownloadInfo downloadInfo, String algorithm, String expect, String got) {
             onFailed(downloadInfo, new IOException(algorithm + " verify failed: expect " + expect + ", but got " + got));
         }
-    }
+    }*/
 }

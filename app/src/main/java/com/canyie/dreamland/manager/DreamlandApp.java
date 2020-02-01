@@ -10,7 +10,6 @@ import com.canyie.dreamland.manager.utils.RuntimeHelper;
 
 /**
  * @author canyie
- * @date 2019/12/19.
  */
 public final class DreamlandApp extends Application {
     @Override protected void attachBaseContext(Context base) {
@@ -22,24 +21,11 @@ public final class DreamlandApp extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        Choreographer.getInstance().postFrameCallback(new Choreographer.FrameCallback() {
-            private long last;
-            @Override public void doFrame(long frameTimeNanos) {
-                if (last != 0) {
-                    long usedTime = frameTimeNanos - last;
-                    if (usedTime > 128000000) {
-                        //DLog.e("FrameCallback", "draw frame used " + usedTime + " ns", new Throwable("here"));
-                    }
-                }
-                last = frameTimeNanos;
-                Choreographer.getInstance().postFrameCallback(this);
-            }
-        });
         AppGlobals.initOnce();
         Dreamland.init();
     }
 
-    @Override public void onTrimMemory(int level) {
+    /*@Override public void onTrimMemory(int level) {
         super.onTrimMemory(level);
         switch (level) {
             case TRIM_MEMORY_UI_HIDDEN :
@@ -56,5 +42,5 @@ public final class DreamlandApp extends Application {
                 RuntimeHelper.requestHeapTrim();
                 break;
         }
-    }
+    }*/
 }
