@@ -40,21 +40,22 @@ public final class SELinuxHelper {
     public static boolean isEnforcing() {
         boolean isSELinuxStatusFileExists = SELINUX_STATUS_FILE.exists();
         if (isSELinuxStatusFileExists) {
-            FileInputStream fis = null;
             try {
-                fis = new FileInputStream(SELINUX_STATUS_FILE);
-                int c = fis.read(); // 0=permissive 1=enforcing
-                switch (c) {
-                    case '1':
+                FileInputStream fis = new FileInputStream(SELINUX_STATUS_FILE);
+                int status = fis.read();
+                switch (status) {
+                    case 49:
                         return true;
-                    case '0':
+                        break;
+                    case 48:
                         return false;
+                        break;
+                    default:
+                        DLog.e(TAG, "Unexpected byte " + status + " in /sys/fs/selinux/enforce");
                 }
-                DLog.e(TAG, "Unexpected byte %c(%d) in /sys/fs/selinux/enforce", c, c);
+                fis.close();
             } catch (IOException e) {
-                DLog.e(TAG, "Error while reading " + SELINUX_STATUS_FILE.getAbsolutePath(), e);
-            } finally {
-                IOUtils.closeQuietly(fis);
+                return true;
             }
         }
 
