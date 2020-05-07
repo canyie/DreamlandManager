@@ -75,6 +75,10 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         return mFilteredList != null ? mFilteredList.size() : 0;
     }
 
+    @Override public int getItemViewType(int position) {
+        return position;
+    }
+
     public void setOnAppStateChangedListener(OnAppStateChangedListener listener) {
         this.mAppStateChangedListener = listener;
     }

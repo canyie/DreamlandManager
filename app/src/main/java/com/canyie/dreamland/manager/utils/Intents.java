@@ -87,17 +87,6 @@ public final class Intents {
         context.startActivity(intent);
     }
 
-    public static boolean joinQQGroup(Context context, long qqGroup) {
-        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mqqwpa://im/chat?chat_type=group&uin=" + qqGroup + "&version=1"));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        try {
-            context.startActivity(intent);
-            return true;
-        } catch (ActivityNotFoundException e) {
-            return false;
-        }
-    }
-
     private static void toAppDetailsSettings(String packageName, Intent intent) {
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(package2Uri(packageName));

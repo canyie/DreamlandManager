@@ -80,6 +80,10 @@ public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.Vi
         return mFilteredList != null ? mFilteredList.size() : 0;
     }
 
+    @Override public int getItemViewType(int position) {
+        return position;
+    }
+
     public ModuleInfo getModuleInfoForPosition(int position) {
         return mFilteredList.get(position);
     }
