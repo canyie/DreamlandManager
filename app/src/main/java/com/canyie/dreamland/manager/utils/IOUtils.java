@@ -141,16 +141,20 @@ public final class IOUtils {
         return e;
     }
 
+    public static int getErrno(IOException e) {
+        Throwable cause = e;
+        do {
+            if (cause instanceof ErrnoException) {
+                return ((ErrnoException) cause).errno;
+            }
+        } while ((cause = cause.getCause()) != null);
+        return 0;
+    }
+
     public static boolean isPipeBroken(IOException e) {
         String message = e.getMessage();
         if (message != null && message.contains("EPIPE")) return true;
 
-        Throwable cause = e;
-        while ((cause = cause.getCause()) != null) {
-            if (cause instanceof ErrnoException) {
-                return ((ErrnoException) cause).errno == OsConstants.EPIPE;
-            }
-        }
-        return false;
+        return getErrno(e) == OsConstants.EPIPE;
     }
 }

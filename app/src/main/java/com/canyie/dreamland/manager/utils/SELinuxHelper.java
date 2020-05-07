@@ -1,5 +1,7 @@
 package com.canyie.dreamland.manager.utils;
 
+import android.system.OsConstants;
+
 import androidx.annotation.Nullable;
 
 import java.io.File;
@@ -40,22 +42,28 @@ public final class SELinuxHelper {
     public static boolean isEnforcing() {
         boolean isSELinuxStatusFileExists = SELINUX_STATUS_FILE.exists();
         if (isSELinuxStatusFileExists) {
+            FileInputStream fis = null;
             try {
-                FileInputStream fis = new FileInputStream(SELINUX_STATUS_FILE);
+                fis = new FileInputStream(SELINUX_STATUS_FILE);
                 int status = fis.read();
                 switch (status) {
-                    case 49:
+                    case '1':
                         return true;
-                        break;
-                    case 48:
+                    case '0':
                         return false;
-                        break;
                     default:
                         DLog.e(TAG, "Unexpected byte " + status + " in /sys/fs/selinux/enforce");
                 }
-                fis.close();
             } catch (IOException e) {
-                return true;
+                int errno = IOUtils.getErrno(e);
+                if (errno == OsConstants.EACCES || errno == OsConstants.EPERM) {
+                    // Status file is existing but cannot read, blocked by SELinux?
+                    DLog.w(TAG, "Read %s failed: permission denied.", SELINUX_STATUS_FILE.getAbsolutePath());
+                    return true;
+                }
+                DLog.e(TAG, "Read SELinux status file failed", e);
+            } finally {
+                IOUtils.closeQuietly(fis);
             }
         }
 
