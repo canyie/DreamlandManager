@@ -1,6 +1,9 @@
 package com.canyie.dreamland.manager.ui.activities;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,10 +83,16 @@ public class AboutActivity extends BaseActivity implements View.OnLongClickListe
         Element element = new Element();
         element.setTitle(getString(R.string.about_join_qq_group));
         element.setIconDrawable(R.drawable.ic_qq); // FIXME: This icon appears filled with black.
-        final long qqGroup = 949888394;
+
         element.setOnClickListener(v -> {
-            boolean success = Intents.joinQQGroup(this, qqGroup);
-            if (!success) {
+            final String qqGroupKey = "eSLRhvqWfeIuxciJyvo8Lu-On3tKgL2l";
+            Intent intent = new Intent();
+            intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + qqGroupKey));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
                 toast(R.string.about_alert_qq_is_unavailable);
             }
         });

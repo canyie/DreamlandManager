@@ -136,7 +136,7 @@ public final class Dreamland {
                 // different SELinux sandbox (has a different SELinux context), so it
                 // can't read our properties.
                 // See https://source.android.com/security/app-sandbox or
-                // https://source.android.google.cn/security/app-sandbox (For China user)
+                // https://source.android.google.cn/security/app-sandbox (For Chinese user)
                 continue;
             }
             appInfos.add(new AppInfo(pm, manager, applicationInfo));
