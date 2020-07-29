@@ -59,7 +59,7 @@
     <string name="shell_process_normal_exit">脚本已正常退出。</string>
     <string name="shell_process_unexpected_exit">脚本意外退出：退出代码 %d。</string>
     <string name="framework_state_active">梦境框架已激活！（版本号 %d）</string>
-    <string name="framework_state_disabled">梦境框架未启用。</string>
+    <string name="framework_state_safe_mode">梦境框架安全模式已启用。</string>
     <string name="framework_state_installed_but_not_active">梦境框架已被完整安装，但未激活。</string>
     <string name="framework_state_broken">梦境框架核心文件已损坏，请重新安装或卸载框架。</string>
     <string name="framework_state_not_installed">梦境框架未安装。</string>
@@ -90,4 +90,8 @@
     <string name="install_error_unknown_error">未知错误。</string>
     <string name="install_error_framework_required_manager_too_high">此框架包需要更高的管理器版本。请更新您的梦境框架管理器并重试。</string>
     <string name="maybe_no_root_alert">您是否已经授予root权限？</string>
+    <string name="safe_mode">安全模式</string>
+    <string name="answer_to_qq_group_question">QQ群入群问题：canyie</string>
+    <string name="installation_package_not_publicly_available">框架安装包未公开提供</string>
+    <string name="internal_test_only">目前，梦境框架非常非常不稳定，所以它并未公开提供；\n如果您想要参加我们的内部测试，请在关于页面中加入我们的QQ群。</string>
 </resources>

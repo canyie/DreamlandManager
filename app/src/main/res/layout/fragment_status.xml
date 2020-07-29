@@ -6,283 +6,309 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:layout_marginTop="1dp"
+            android:elevation="1dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="0dp"
+            app:rippleColor="?colorAccent"
+            android:id="@+id/safe_mode_card">
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="12dp"
+                android:text="@string/safe_mode"
+                android:textSize="16sp"
+                android:id="@+id/safe_mode_switch"/>
+        </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/status_card"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:rippleColor="?colorAccent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <FrameLayout
-                        android:id="@+id/status_icon_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/color_active">
-
-                        <ImageView
-                            android:id="@+id/status_icon"
-                            android:layout_width="84dp"
-                            android:layout_height="84dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="8dp"
-                            android:src="@drawable/ic_check_circle" />
-                    </FrameLayout>
-
-                    <TextView
-                        android:id="@+id/status_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:padding="6dp"
-                        android:text="@string/app_name"
-                        android:textSize="16sp" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="16dp"
-                android:id="@+id/action_parent_view"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/status_card">
+                android:padding="8dp">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/status_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:id="@+id/install_card"
-                    android:visibility="gone"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground">
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:rippleColor="?colorAccent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:paddingStart="8dp"
-                        android:paddingTop="20dp"
-                        android:paddingEnd="8dp"
-                        android:paddingBottom="20dp">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:id="@+id/status_icon_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_active">
+
+                            <ImageView
+                                android:id="@+id/status_icon"
+                                android:layout_width="84dp"
+                                android:layout_height="84dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="8dp"
+                                android:src="@drawable/ic_check_circle" />
+                        </FrameLayout>
 
                         <TextView
+                            android:id="@+id/status_text"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="@string/install_or_update"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                            android:padding="6dp"
+                            android:text="@string/app_name"
+                            android:textSize="16sp" />
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
 
+                <LinearLayout
+                    android:id="@+id/action_parent_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/status_card">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/install_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="16dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingStart="8dp"
+                            android:paddingTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="15dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="@string/install_or_update"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/uninstall_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="5dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:padding="16dp"
+                        android:visibility="gone"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/install_card">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingStart="8dp"
+                            android:paddingTop="15dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="15dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="@string/uninstall"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/install_know_issue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="@string/install_issue"
+                        android:textColor="@color/color_error"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/device_info_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
                     android:padding="16dp"
-                    android:layout_marginBottom="5dp"
-                    android:id="@+id/uninstall_card"
-                    android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/install_card">
+                    app:layout_constraintTop_toBottomOf="@id/action_parent_view">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingStart="8dp"
-                        android:paddingTop="20dp"
-                        android:paddingEnd="8dp"
-                        android:paddingBottom="20dp">
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="10dp">
 
                         <TextView
+                            android:id="@+id/device_info_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/device_info" />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="@string/uninstall"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                            android:layout_height="@dimen/device_info_item_height">
+
+                            <ImageView
+                                android:layout_width="@dimen/small_image_width"
+                                android:layout_height="@dimen/small_image_height"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_android" />
+
+                            <Space
+                                android:layout_width="30dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/device_info_android_version"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                tools:text="Android Version" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/device_info_item_height">
+
+                            <ImageView
+                                android:layout_width="@dimen/small_image_width"
+                                android:layout_height="@dimen/small_image_height"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_phone" />
+
+                            <Space
+                                android:layout_width="32dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/device_info_device"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                tools:text="Device" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/device_info_item_height">
+
+                            <ImageView
+                                android:layout_width="@dimen/small_image_width"
+                                android:layout_height="@dimen/small_image_height"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_chip" />
+
+                            <Space
+                                android:layout_width="32dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/device_info_cpu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                tools:text="CPU Info" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/device_info_item_height">
+
+                            <ImageView
+                                android:layout_width="@dimen/small_image_width"
+                                android:layout_height="@dimen/small_image_height"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_verified" />
+
+                            <Space
+                                android:layout_width="32dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/device_info_verity_boot"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                tools:text="Verity Boot State" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/device_info_item_height">
+
+                            <ImageView
+                                android:layout_width="@dimen/small_image_width"
+                                android:layout_height="@dimen/small_image_height"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_selinux" />
+
+                            <Space
+                                android:layout_width="32dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/device_info_selinux_mode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                tools:text="SELinux State" />
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/install_know_issue"
-                    android:padding="8dp"
-                    android:text="@string/install_issue"
-                    android:textColor="@color/color_error"
-                    android:textSize="15sp"
-                    android:visibility="gone"/>
-            </LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/device_info_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:padding="16dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/action_parent_view">
-
-                <LinearLayout
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingStart="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingEnd="10dp">
-
-                    <TextView
-                        android:id="@+id/device_info_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/device_info" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/device_info_item_height">
-
-                        <ImageView
-                            android:layout_width="@dimen/small_image_width"
-                            android:layout_height="@dimen/small_image_height"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_android" />
-
-                        <Space
-                            android:layout_width="30dp"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/device_info_android_version"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            tools:text="Android Version" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/device_info_item_height">
-
-                        <ImageView
-                            android:layout_width="@dimen/small_image_width"
-                            android:layout_height="@dimen/small_image_height"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_phone" />
-
-                        <Space
-                            android:layout_width="32dp"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/device_info_device"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            tools:text="Device" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/device_info_item_height">
-
-                        <ImageView
-                            android:layout_width="@dimen/small_image_width"
-                            android:layout_height="@dimen/small_image_height"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_chip" />
-
-                        <Space
-                            android:layout_width="32dp"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/device_info_cpu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            tools:text="CPU Info" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/device_info_item_height">
-
-                        <ImageView
-                            android:layout_width="@dimen/small_image_width"
-                            android:layout_height="@dimen/small_image_height"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_verified" />
-
-                        <Space
-                            android:layout_width="32dp"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/device_info_verity_boot"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            tools:text="Verity Boot State" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/device_info_item_height">
-
-                        <ImageView
-                            android:layout_width="@dimen/small_image_width"
-                            android:layout_height="@dimen/small_image_height"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_selinux" />
-
-                        <Space
-                            android:layout_width="32dp"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/device_info_selinux_mode"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                            tools:text="SELinux State" />
-                    </LinearLayout>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                app:layout_constraintTop_toBottomOf="@id/device_info_card" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                    android:layout_height="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/device_info_card" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

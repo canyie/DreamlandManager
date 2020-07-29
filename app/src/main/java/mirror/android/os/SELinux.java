@@ -1,6 +1,6 @@
 package mirror.android.os;
 
-import com.canyie.dreamland.manager.utils.reflect.Reflection;
+import top.canyie.dreamland.manager.utils.reflect.Reflection;
 /**
  * Mirror class of android.os.SELinux
  * @author canyie

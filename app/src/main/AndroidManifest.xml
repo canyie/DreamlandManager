@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.canyie.dreamland.manager">
+    package="top.canyie.dreamland.manager">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -25,8 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activities.AboutActivity" />
-        <activity android:name=".ui.activities.InstallationActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <!-- <activity android:name=".ui.activities.InstallationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/> -->
     </application>
 
 </manifest>

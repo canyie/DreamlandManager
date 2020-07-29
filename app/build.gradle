@@ -9,15 +9,11 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.canyie.dreamland.manager"
+        applicationId "top.canyie.dreamland.manager"
         minSdkVersion 24
         targetSdkVersion 27
-        // If targetSdkVersion >= 28, we are in a new SELinux sandbox
-        // Chinese: https://source.android.google.cn/security/app-sandbox
-        // English: https://source.android.com/security/app-sandbox
-        versionCode 2
-        versionName "0.0.2"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode 3
+        versionName "0.0.3"
     }
 
     signingConfigs {
@@ -57,7 +53,4 @@ dependencies {
     // okhttp and okio is unused now
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.medyo:android-about-page:1.2.5'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

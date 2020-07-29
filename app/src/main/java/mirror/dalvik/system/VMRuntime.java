@@ -1,6 +1,6 @@
 package mirror.dalvik.system;
 
-import com.canyie.dreamland.manager.utils.reflect.Reflection;
+import top.canyie.dreamland.manager.utils.reflect.Reflection;
 
 /**
  * @author canyie
