@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -131,15 +132,16 @@ public class StatusFragment extends PageFragment
     @Override protected void updateUIForData(Object data) {
         I info = (I) data;
         String text;
-        int cardBackgroundColorRes;
+        boolean normal = false, warning = false;
         int cardImageRes;
         boolean supported;
         boolean safeMode;
         boolean showSafeModeSwitch;
+
         switch (info.frameworkState) {
             case FRAMEWORK_STATE_ACTIVE:
                 text = getString(R.string.framework_state_active, info.frameworkVersion);
-                cardBackgroundColorRes = R.color.color_active;
+                normal = true;
                 cardImageRes = R.drawable.ic_check_circle;
                 safeMode = false;
                 supported = true;
@@ -147,7 +149,7 @@ public class StatusFragment extends PageFragment
                 break;
             case FRAMEWORK_STATE_SAFE_MODE:
                 text = getString(R.string.framework_state_safe_mode);
-                cardBackgroundColorRes = R.color.color_warning;
+                warning = true;
                 cardImageRes = R.drawable.ic_warning;
                 safeMode = true;
                 supported = true;
@@ -155,7 +157,7 @@ public class StatusFragment extends PageFragment
                 break;
             case FRAMEWORK_STATE_COMPLETE_INSTALLED:
                 text = getString(R.string.framework_state_installed_but_not_active);
-                cardBackgroundColorRes = R.color.color_warning;
+                warning = true;
                 cardImageRes = R.drawable.ic_warning;
                 safeMode = false;
                 supported = true;
@@ -163,7 +165,6 @@ public class StatusFragment extends PageFragment
                 break;
             case FRAMEWORK_STATE_BROKEN:
                 text = getString(R.string.framework_state_broken);
-                cardBackgroundColorRes = R.color.color_error;
                 cardImageRes = R.drawable.ic_error;
                 safeMode = false;
                 supported = true;
@@ -171,7 +172,6 @@ public class StatusFragment extends PageFragment
                 break;
             case FRAMEWORK_STATE_NOT_INSTALLED:
                 text = getString(R.string.framework_state_not_installed);
-                cardBackgroundColorRes = R.color.color_error;
                 cardImageRes = R.drawable.ic_error;
                 safeMode = false;
                 supported = Dreamland.isSupported();
@@ -182,6 +182,17 @@ public class StatusFragment extends PageFragment
         }
 
         statusText.setText(text);
+
+        int cardBackgroundColorRes;
+        boolean darkMode = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+                (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        if (darkMode) {
+            cardBackgroundColorRes = normal ? R.color.color_active_dark :
+                    warning ? R.color.color_warning_dark : R.color.color_error_dark;
+        } else {
+            cardBackgroundColorRes = normal ? R.color.color_active :
+                    warning ? R.color.color_warning : R.color.color_error;
+        }
         statusCardBackground.setBackgroundColor(statusCardBackground.getContext().getColor(cardBackgroundColorRes));
         statusImage.setImageResource(cardImageRes);
 

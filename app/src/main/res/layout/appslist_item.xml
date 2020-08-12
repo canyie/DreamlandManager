@@ -24,7 +24,9 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:id="@+id/app_icon"
-            tools:src="@mipmap/ic_launcher" />
+            android:forceDarkAllowed="false"
+            tools:src="@mipmap/ic_launcher"
+            tools:ignore="UnusedAttribute" />
     </FrameLayout>
 
     <TextView
