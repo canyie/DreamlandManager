@@ -135,7 +135,7 @@ public final class FileUtils {
 
     public static void unzip(File zip, File to) throws IOException {
         if (!zip.isFile()) {
-            throw new IllegalArgumentException("File " + zip.getAbsolutePath() + " is not a invalid file");
+            throw new IllegalArgumentException("File " + zip.getAbsolutePath() + " is not a valid file");
         }
         ensureDirectroyExisting(to);
         ZipInputStream zis = null;

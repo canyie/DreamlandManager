@@ -10,7 +10,8 @@ import java.util.Comparator;
  * @author canyie
  */
 @Keep public final class ModuleInfo {
-    public static final Comparator<ModuleInfo> COMPARATOR = (a, b) -> a.name.compareTo(b.name);
+    public static final Comparator<ModuleInfo> COMPARATOR = (a, b) -> a.enabled == b.enabled
+            ? a.name.compareTo(b.name) : a.enabled ? -1 : 1;
 
     public String name;
     public String packageName;

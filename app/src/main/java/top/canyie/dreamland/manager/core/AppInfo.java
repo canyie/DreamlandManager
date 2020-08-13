@@ -15,7 +15,8 @@ import top.canyie.dreamland.manager.AppGlobals;
  * @author canyie
  */
 @Keep public final class AppInfo {
-    public static final Comparator<AppInfo> COMPARATOR = (a, b) -> a.name.compareTo(b.name);
+    public static final Comparator<AppInfo> COMPARATOR = (a, b) -> a.enabled == b.enabled
+            ? a.name.compareTo(b.name) : a.enabled ? -1 : 1;
 
     public String name;
     public String packageName;
