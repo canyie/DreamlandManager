@@ -135,47 +135,35 @@ public class StatusFragment extends PageFragment
         boolean normal = false, warning = false;
         int cardImageRes;
         boolean supported;
-        boolean safeMode;
-        boolean showSafeModeSwitch;
 
         switch (info.frameworkState) {
             case FRAMEWORK_STATE_ACTIVE:
                 text = getString(R.string.framework_state_active, info.frameworkVersion);
                 normal = true;
                 cardImageRes = R.drawable.ic_check_circle;
-                safeMode = false;
                 supported = true;
-                showSafeModeSwitch = true;
                 break;
             case FRAMEWORK_STATE_SAFE_MODE:
                 text = getString(R.string.framework_state_safe_mode);
                 warning = true;
                 cardImageRes = R.drawable.ic_warning;
-                safeMode = true;
                 supported = true;
-                showSafeModeSwitch = true;
                 break;
             case FRAMEWORK_STATE_COMPLETE_INSTALLED:
                 text = getString(R.string.framework_state_installed_but_not_active);
                 warning = true;
                 cardImageRes = R.drawable.ic_warning;
-                safeMode = false;
                 supported = true;
-                showSafeModeSwitch = false;
                 break;
             case FRAMEWORK_STATE_BROKEN:
                 text = getString(R.string.framework_state_broken);
                 cardImageRes = R.drawable.ic_error;
-                safeMode = false;
                 supported = true;
-                showSafeModeSwitch = false;
                 break;
             case FRAMEWORK_STATE_NOT_INSTALLED:
                 text = getString(R.string.framework_state_not_installed);
                 cardImageRes = R.drawable.ic_error;
-                safeMode = false;
                 supported = Dreamland.isSupported();
-                showSafeModeSwitch = false;
                 break;
             default:
                 throw new UnsupportedOperationException("Unexpected framework state: " + info.frameworkState);
@@ -228,13 +216,6 @@ public class StatusFragment extends PageFragment
             installIssueText.setVisibility(View.VISIBLE);
         }
 
-        if (showSafeModeSwitch) {
-            SwitchCompat safeModeSwitch = findView(R.id.safe_mode_switch);
-            safeModeSwitch.setChecked(safeMode);
-            safeModeSwitch.setOnCheckedChangeListener(this);
-        } else {
-            findView(R.id.safe_mode_card).setVisibility(View.GONE);
-        }
         super.updateUIForData(data);
     }
 

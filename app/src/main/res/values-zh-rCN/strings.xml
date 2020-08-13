@@ -94,4 +94,14 @@
     <string name="answer_to_qq_group_question">QQ群入群问题：canyie</string>
     <string name="installation_package_not_publicly_available">框架安装包未公开提供</string>
     <string name="internal_test_only">目前，梦境框架非常非常不稳定，所以它并未公开提供；\n如果您想要参加我们的内部测试，请在关于页面中加入我们的QQ群。</string>
+    <string name="settings">设置</string>
+    <string name="framework">框架</string>
+    <string name="safemode_summary">如果安全模式已启用，那么只运行核心功能，不会加载任何模块。</string>
+    <string name="global_mode">全局模式</string>
+    <string name="global_mode_summary">在几乎所有进程应用所有已被启用的模块。大多数情况下您都不应该使用此模式。</string>
+    <string name="resources_hook">启用资源钩子（实验性功能）</string>
+    <string name="resources_hook_summary">启用实验性功能”资源钩子“。启用之后一些需要该特性的模块（如主题模块）将可能会工作。</string>
+    <string name="framework_not_active">梦境框架未激活。</string>
+    <string name="manager">管理器</string>
+    <string name="restart_manager">重启管理器</string>
 </resources>

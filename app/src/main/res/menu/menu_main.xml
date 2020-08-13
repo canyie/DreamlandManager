@@ -9,6 +9,11 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom" />
     <item
+        android:title="@string/settings"
+        android:icon="@drawable/ic_settings"
+        android:id="@+id/action_settings"
+        app:showAsAction="ifRoom"/>
+    <item
         android:title="@string/action_reboot"
         android:id="@+id/action_reboot"/>
     <item

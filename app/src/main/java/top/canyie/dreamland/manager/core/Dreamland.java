@@ -170,6 +170,38 @@ public final class Dreamland {
         sEnabledModules = null;
     }
 
+    public static boolean isResourcesHookEnabled() {
+        try {
+            return service.isResourcesHookEnabled();
+        } catch (RemoteException e) {
+            throw new RuntimeException("Failure from remote service", e);
+        }
+    }
+
+    public static void setResourcesHookEnabled(boolean enabled) {
+        try {
+            service.setResourcesHookEnabled(enabled);
+        } catch (RemoteException e) {
+            throw new RuntimeException("Failure from remote service", e);
+        }
+    }
+
+    public static boolean isGlobalMode() {
+        try {
+            return service.isGlobalModeEnabled();
+        } catch (RemoteException e) {
+            throw new RuntimeException("Failure from remote service", e);
+        }
+    }
+
+    public static void setGlobalModeEnabled(boolean enabled) {
+        try {
+            service.setGlobalModeEnabled(enabled);
+        } catch (RemoteException e) {
+            throw new RuntimeException("Failure from remote service", e);
+        }
+    }
+
     public static void ensureEnabledModuleDataLoaded() {
         if (sEnabledModules == null) {
             sEnabledModules = new HashSet<>();

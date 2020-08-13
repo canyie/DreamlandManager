@@ -11,6 +11,9 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceDataStore;
+import androidx.preference.PreferenceFragmentCompat;
 
 import top.canyie.dreamland.manager.BuildConfig;
 import top.canyie.dreamland.manager.R;

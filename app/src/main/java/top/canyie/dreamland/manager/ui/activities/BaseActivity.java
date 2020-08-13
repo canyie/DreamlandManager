@@ -75,8 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return null;
     }
 
-    @LayoutRes
-    protected int getLayoutResId() {
+    @LayoutRes protected int getLayoutResId() {
         throw new UnsupportedOperationException();
     }
 

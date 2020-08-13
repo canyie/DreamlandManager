@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:title="@string/framework"
+        app:iconSpaceReserved="false">
+        <SwitchPreferenceCompat
+            app:key="safemode"
+            app:title="@string/safe_mode"
+            app:summary="@string/safemode_summary"
+            app:iconSpaceReserved="false"/>
+        <SwitchPreferenceCompat
+            app:key="global_mode"
+            app:title="@string/global_mode"
+            app:summary="@string/global_mode_summary"
+            app:iconSpaceReserved="false"/>
+        <SwitchPreferenceCompat
+            app:key="resources_hook"
+            app:title="@string/resources_hook"
+            app:summary="@string/resources_hook_summary"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/manager"
+        app:iconSpaceReserved="false">
+        <Preference
+            app:key="restart_manager"
+            app:title="@string/restart_manager"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

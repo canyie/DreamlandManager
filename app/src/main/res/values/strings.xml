@@ -94,5 +94,14 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="answer_to_qq_group_question">Answer to QQ Group question: canyie</string>
     <string name="installation_package_not_publicly_available">Installation package is not publicly available</string>
     <string name="internal_test_only">Currently, the Dreamland framework is very unstable, so it is not publicly available.\n If you want to participate in our internal test, please join our QQ group on the about page.</string>
-
+    <string name="settings">Settings</string>
+    <string name="framework">Framework</string>
+    <string name="safemode_summary">If safe mode is enabled, only the core functions are enabled and no modules will be loaded.</string>
+    <string name="global_mode">Global mode</string>
+    <string name="global_mode_summary">Apply all enabled modules in almost all processes. You should not use this mode in most cases.</string>
+    <string name="resources_hook">Resources hook (Experimental features)</string>
+    <string name="resources_hook_summary">Enable experimental feature \"resources hook\". After enabling, some modules that require this feature (such as theming modules) will work.</string>
+    <string name="framework_not_active">Dreamland framework is not active.</string>
+    <string name="manager">Manager</string>
+    <string name="restart_manager">Restart manager</string>
 </resources>

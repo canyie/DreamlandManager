@@ -12,4 +12,8 @@ interface IDreamlandManager {
     boolean isSafeModeEnabled();
     void setSafeModeEnabled(boolean enabled);
     void reload();
+    boolean isResourcesHookEnabled();
+    void setResourcesHookEnabled(boolean enabled);
+    boolean isGlobalModeEnabled();
+    void setGlobalModeEnabled(boolean enabled);
 }

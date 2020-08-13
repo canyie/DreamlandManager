@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import top.canyie.dreamland.manager.R;
+import top.canyie.dreamland.manager.core.Dreamland;
 import top.canyie.dreamland.manager.ui.adapters.MainPagerAdapter;
 import top.canyie.dreamland.manager.ui.fragments.AppManagerFragment;
 import top.canyie.dreamland.manager.ui.fragments.StatusFragment;
@@ -90,6 +91,12 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         int id = item.getItemId();
 
         switch (id) {
+            case R.id.action_settings:
+                if (Dreamland.isActive())
+                    startActivity(SettingsActivity.class);
+                else
+                    toast(R.string.framework_not_active);
+                return true;
             case R.id.action_reboot:
             case R.id.action_soft_reboot:
             case R.id.action_reboot_to_recovery:
