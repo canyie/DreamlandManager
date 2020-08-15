@@ -13,11 +13,13 @@ import androidx.annotation.Keep;
 
 import top.canyie.dreamland.ipc.IDreamlandManager;
 
+import top.canyie.dreamland.manager.AppGlobals;
 import top.canyie.dreamland.manager.BuildConfig;
 import top.canyie.dreamland.manager.core.installation.Installer;
 import top.canyie.dreamland.manager.utils.DeviceUtils;
 import top.canyie.dreamland.manager.utils.FileUtils;
 import top.canyie.dreamland.manager.utils.RuntimeHelper;
+import top.canyie.dreamland.manager.utils.Threads;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -129,6 +131,46 @@ public final class Dreamland {
         return modules;
     }
 
+    public static MasData getMasDataFor(String module) throws InterruptedException {
+        MasData data = new MasData();
+        String[] remoteData = getEnabledAppsFor(module);
+        Set<String> enabledFor;
+        if (remoteData != null) {
+            data.enabled = true;
+            enabledFor = new HashSet<>(remoteData.length);
+            Collections.addAll(enabledFor, remoteData);
+        } else {
+            data.enabled = false;
+            enabledFor = Collections.emptySet();
+        }
+        Threads.throwIfInterrupted();
+        PackageManager pm = AppGlobals.getApp().getPackageManager();
+        List<ApplicationInfo> rawAppInfos = pm.getInstalledApplications(0);
+        List<AppInfo> appInfos = new ArrayList<>(rawAppInfos.size());
+        for (ApplicationInfo applicationInfo : rawAppInfos) {
+            if (MANAGER_PACKAGE_NAME.equals(applicationInfo.packageName)) continue;
+            appInfos.add(new AppInfo(pm, applicationInfo, enabledFor.contains(applicationInfo.packageName)));
+        }
+        appInfos.sort(AppInfo.COMPARATOR);
+        Threads.throwIfInterrupted();
+        data.apps = appInfos;
+        return data;
+    }
+
+    public static void setMasDataFor(String module, MasData data) {
+        String[] remoteData;
+        if (data.enabled) {
+            Set<String> set = new HashSet<>(Math.min(4, data.apps.size() / 100));
+            for (AppInfo appInfo : data.apps) {
+                if (appInfo.enabled) set.add(appInfo.packageName);
+            }
+            remoteData = set.toArray(new String[set.size()]);
+        } else {
+            remoteData = null;
+        }
+        setEnabledAppsFor(module, remoteData);
+    }
+
     public static boolean isAppEnabled(String packageName) {
         ensureEnabledAppDataLoaded();
         return sEnabledApps.contains(packageName);
@@ -197,6 +239,22 @@ public final class Dreamland {
     public static void setGlobalModeEnabled(boolean enabled) {
         try {
             service.setGlobalModeEnabled(enabled);
+        } catch (RemoteException e) {
+            throw new RuntimeException("Failure from remote service", e);
+        }
+    }
+
+    public static String[] getEnabledAppsFor(String module) {
+        try {
+            return service.getEnabledAppsFor(module);
+        } catch (RemoteException e) {
+            throw new RuntimeException("Failure from remote service", e);
+        }
+    }
+
+    public static void setEnabledAppsFor(String module, String[] apps) {
+        try {
+            service.setEnabledAppsFor(module, apps);
         } catch (RemoteException e) {
             throw new RuntimeException("Failure from remote service", e);
         }

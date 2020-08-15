@@ -28,21 +28,21 @@ import java.util.List;
  * @author canyie
  */
 public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHolder> implements Filterable {
-    private Context context;
-    private View attachedOn;
+    private Context mContext;
+    private LayoutInflater mLayoutInflater;
     private List<AppInfo> mSourceList;
     private List<AppInfo> mFilteredList;
     private AppsFilter mFilter;
     private OnAppStateChangedListener mAppStateChangedListener;
 
-    public AppListAdapter(Context context, View attachedOn) {
-        this.context = context;
-        this.attachedOn = attachedOn;
+    public AppListAdapter(Context context) {
+        this.mContext = context;
+        this.mLayoutInflater = LayoutInflater.from(context);
     }
 
     @NonNull @Override
     public AppListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.appslist_item, parent, false);
+        View view = mLayoutInflater.inflate(R.layout.appslist_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -54,8 +54,8 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         holder.appIcon.setImageDrawable(appInfo.icon);
         holder.appCheckbox.setChecked(appInfo.enabled);
         holder.itemView.setOnClickListener(v -> {
-            if (!Intents.openAppUserInterface(context, getAppInfoForPosition(position).packageName)) {
-                ToastCompat.showToast(context, R.string.alert_app_cannot_open);
+            if (!Intents.openAppUserInterface(mContext, getAppInfoForPosition(position).packageName)) {
+                ToastCompat.showToast(mContext, R.string.alert_app_cannot_open);
             }
         });
         if (Dreamland.isActive()) {

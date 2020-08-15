@@ -46,7 +46,7 @@ public class AppManagerFragment extends PageFragment implements SearchView.OnQue
         Context context = requireContext();
         RecyclerView recyclerView = requireView(R.id.apps_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mAdapter = new AppListAdapter(context, recyclerView);
+        mAdapter = new AppListAdapter(context);
         mAdapter.setOnAppStateChangedListener(this);
         recyclerView.setAdapter(mAdapter);
         registerForContextMenu(recyclerView);

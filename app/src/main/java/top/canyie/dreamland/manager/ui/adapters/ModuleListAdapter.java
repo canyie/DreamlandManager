@@ -29,21 +29,21 @@ import java.util.List;
  * @author canyie
  */
 public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.ViewHolder> implements Filterable {
-    private ModuleManagerFragment mFragment;
-    private Context context;
+    private Context mContext;
+    private LayoutInflater mLayoutInflater;
     private List<ModuleInfo> mSourceList;
     private List<ModuleInfo> mFilteredList;
     private ModulesFilter mFilter;
     private OnModuleStateChangedListener mModuleStateChangedListener;
 
-    public ModuleListAdapter(ModuleManagerFragment fragment) {
-        this.mFragment = fragment;
-        this.context = fragment.requireContext();
+    public ModuleListAdapter(Context context) {
+        this.mContext = context;
+        this.mLayoutInflater = LayoutInflater.from(context);
     }
 
     @NonNull @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.moduleslist_item, parent, false);
+        View view = mLayoutInflater.inflate(R.layout.moduleslist_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -63,6 +63,7 @@ public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.Vi
             holder.error.setVisibility(View.VISIBLE);
             holder.checkbox.setEnabled(false);
         } else if (module.supported) {
+            holder.checkbox.setEnabled(true);
             holder.checkbox.setOnCheckedChangeListener((view, isChecked) -> {
                 getModuleInfoForPosition(position).setEnabled(isChecked);
                 if (mModuleStateChangedListener != null)
@@ -75,8 +76,8 @@ public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.Vi
         }
 
         holder.itemView.setOnClickListener(v -> {
-            if (!Intents.openAppUserInterface(context, getModuleInfoForPosition(position).packageName)) {
-                ToastCompat.showToast(context, R.string.alert_module_cannot_open);
+            if (!Intents.openAppUserInterface(mContext, getModuleInfoForPosition(position).packageName)) {
+                ToastCompat.showToast(mContext, R.string.alert_module_cannot_open);
             }
         });
     }

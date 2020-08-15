@@ -4,6 +4,9 @@
         android:id="@+id/module_action_launch"
         android:title="@string/module_action_launch"/>
     <item
+        android:id="@+id/module_action_mas"
+        android:title="@string/module_activation_scope"/>
+    <item
         android:id="@+id/module_action_info"
         android:title="@string/module_action_info" />
     <item

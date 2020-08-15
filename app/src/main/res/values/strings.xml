@@ -14,7 +14,6 @@
     <string name="selinux_mode_disabled">SELinux is disabled</string>
     <string name="selinux_mode_permissive">SELinux mode: permissive</string>
     <string name="selinux_mode_enforcing">SELinux mode: enforcing</string>
-    <string name="action_search">Search</string>
     <string name="about">About</string>
     <string name="app_description">Dreamland Framework(developing): A third-party Xposed framework.</string>
     <string name="about_my_blog">Visit my blog</string>
@@ -104,4 +103,11 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="framework_not_active">Dreamland framework is not active.</string>
     <string name="manager">Manager</string>
     <string name="restart_manager">Restart manager</string>
+    <string name="module_activation_scope">Module Activation Scope</string>
+    <string name="save">Save</string>
+    <string name="enable_mas">Enable module activation scope</string>
+    <string name="mas_alert">The \"Module Activation Scope\" mechanism can enable Xposed modules to take effect only in certain applications, but this is not absolute; modules may still affect other applications by controlling one application.</string>
+    <string name="changes_saved">Your changes have been saved.</string>
+    <string name="mas_exit_alert">Do you want to quit editing? Your edits will not be saved.</string>
+    <string name="save_and_exit">Save and exit</string>
 </resources>

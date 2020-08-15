@@ -14,7 +14,6 @@
     <string name="selinux_mode_disabled">SELinux已禁用</string>
     <string name="selinux_mode_permissive">SELinux运行在宽容模式</string>
     <string name="selinux_mode_enforcing">SELinux运行在强制模式</string>
-    <string name="action_search">搜索</string>
     <string name="about">关于</string>
     <string name="app_description">梦境框架是一个类似Xposed的框架，正在开发。</string>
     <string name="about_my_blog">欢迎访问我的博客</string>
@@ -104,4 +103,11 @@
     <string name="framework_not_active">梦境框架未激活。</string>
     <string name="manager">管理器</string>
     <string name="restart_manager">重启管理器</string>
+    <string name="module_activation_scope">模块作用域</string>
+    <string name="save">保存</string>
+    <string name="enable_mas">启用模块作用域</string>
+    <string name="mas_alert">“模块作用域”机制可以使Xposed模块们仅在某些应用生效，但这并非绝对；模块仍有可能通过控制某应用影响其他应用。</string>
+    <string name="changes_saved">您的更改已保存。</string>
+    <string name="mas_exit_alert">您想要退出编辑吗？您的编辑将不会被保存。</string>
+    <string name="save_and_exit">保存并退出</string>
 </resources>

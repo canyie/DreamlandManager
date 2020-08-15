@@ -1,10 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.canyie.dreamland.manager.top.canyie.dreamland.manager.ui.activities.MainActivity">
+    tools:context="top.canyie.dreamland.manager.ui.activities.MainActivity">
 
     <item
-        android:title="@string/action_search"
+        android:title="@android:string/search_go"
         android:id="@+id/action_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom" />

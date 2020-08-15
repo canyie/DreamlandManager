@@ -147,10 +147,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         super.onBackPressed();
     }
 
-    @Override protected void onDestroy() {
-        super.onDestroy();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == InstallationActivity.REQUEST_CODE) {

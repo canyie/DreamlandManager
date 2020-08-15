@@ -1,6 +1,7 @@
 package top.canyie.dreamland.manager.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import top.canyie.dreamland.manager.R;
 import top.canyie.dreamland.manager.core.Dreamland;
 import top.canyie.dreamland.manager.core.ModuleInfo;
+import top.canyie.dreamland.manager.ui.activities.MaseActivity;
 import top.canyie.dreamland.manager.ui.adapters.ModuleListAdapter;
 import top.canyie.dreamland.manager.ui.widgets.CMRecyclerView;
 import top.canyie.dreamland.manager.AppConstants;
@@ -45,7 +47,7 @@ public class ModuleManagerFragment extends PageFragment implements SearchView.On
         Context context = requireContext();
         RecyclerView recyclerView = requireView(R.id.modules_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mAdapter = new ModuleListAdapter(this);
+        mAdapter = new ModuleListAdapter(context);
         mAdapter.setOnModuleStateChangedListener(this);
         recyclerView.setAdapter(mAdapter);
         registerForContextMenu(recyclerView);
@@ -98,6 +100,16 @@ public class ModuleManagerFragment extends PageFragment implements SearchView.On
             case R.id.module_action_launch:
                 if (!Intents.openAppUserInterface(context, mCurrentSelectedModule.packageName)) {
                     toast(R.string.alert_module_cannot_open);
+                }
+                return true;
+            case R.id.module_action_mas:
+                if (Dreamland.isActive()) {
+                    Intent intent = new Intent(requireContext(), MaseActivity.class);
+                    intent.putExtra(AppConstants.KEY_MODULE_NAME, mCurrentSelectedModule.name);
+                    intent.putExtra(AppConstants.KEY_MODULE_PACKAGE, mCurrentSelectedModule.packageName);
+                    startActivity(intent);
+                } else {
+                    toast(R.string.framework_not_active);
                 }
                 return true;
             case R.id.module_action_info:
