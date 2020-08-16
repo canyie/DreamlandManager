@@ -76,7 +76,7 @@ public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.Vi
         }
 
         holder.itemView.setOnClickListener(v -> {
-            if (!Intents.openAppUserInterface(mContext, getModuleInfoForPosition(position).packageName)) {
+            if (!Intents.openModuleSettings(mContext, getModuleInfoForPosition(position).packageName)) {
                 ToastCompat.showToast(mContext, R.string.alert_module_cannot_open);
             }
         });

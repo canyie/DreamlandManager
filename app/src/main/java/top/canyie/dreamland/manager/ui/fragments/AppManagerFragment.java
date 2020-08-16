@@ -1,5 +1,6 @@
 package top.canyie.dreamland.manager.ui.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.ContextMenu;
@@ -111,22 +112,10 @@ public class AppManagerFragment extends PageFragment implements SearchView.OnQue
     }
 
     @Override public void onAppStateChanged() {
-        final SharedPreferences defaultConfigSP = AppGlobals.getDefaultConfigSP();
-        boolean shouldShowAlertDialog = defaultConfigSP.getBoolean(AppConstants.SP_KEY_SHOW_DIALOG_WHEN_APP_STATE_CHANGED, true);
-        if (shouldShowAlertDialog) {
-            Dialogs.create(requireActivity())
-                    .message(R.string.app_state_changed_alert_content)
-                    .checkbox(R.string.dont_show_again)
-                    .positiveButton(R.string.ok, dialogInfo -> {
-                        CheckBox checkbox = dialogInfo.checkbox;
-                        assert checkbox != null;
-                        if (checkbox.isChecked()) {
-                            defaultConfigSP.edit()
-                                    .putBoolean(AppConstants.SP_KEY_SHOW_DIALOG_WHEN_APP_STATE_CHANGED, false)
-                                    .apply();
-                        }
-                    })
-                    .showIfActivityActivated();
+        Activity activity = getActivity();
+        if (activity != null) {
+            Dialogs.alertForConfig(activity, R.string.app_state_changed_alert_content,
+                    AppConstants.SP_KEY_SHOW_DIALOG_WHEN_APP_STATE_CHANGED);
         }
     }
 }

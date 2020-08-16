@@ -98,8 +98,8 @@
     <string name="safemode_summary">如果安全模式已启用，那么只运行核心功能，不会加载任何模块。</string>
     <string name="global_mode">全局模式</string>
     <string name="global_mode_summary">在几乎所有进程应用所有已被启用的模块。大多数情况下您都不应该使用此模式。</string>
-    <string name="resources_hook">启用资源钩子（实验性功能）</string>
-    <string name="resources_hook_summary">启用实验性功能”资源钩子“。启用之后一些需要该特性的模块（如主题模块）将可能会工作。</string>
+    <string name="resources_hook">启用资源拦截（实验性功能）</string>
+    <string name="resources_hook_summary">启用实验性功能”资源拦截“。启用之后一些需要该特性的模块（如主题模块）将可能会工作。</string>
     <string name="framework_not_active">梦境框架未激活。</string>
     <string name="manager">管理器</string>
     <string name="restart_manager">重启管理器</string>
@@ -110,4 +110,5 @@
     <string name="changes_saved">您的更改已保存。</string>
     <string name="mas_exit_alert">您想要退出编辑吗？您的编辑将不会被保存。</string>
     <string name="save_and_exit">保存并退出</string>
+    <string name="invalidate_alert_settings">清除提示设置</string>
 </resources>

@@ -1,5 +1,6 @@
 package top.canyie.dreamland.manager.ui.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -98,7 +99,7 @@ public class ModuleManagerFragment extends PageFragment implements SearchView.On
         Context context = requireContext();
         switch (item.getItemId()) {
             case R.id.module_action_launch:
-                if (!Intents.openAppUserInterface(context, mCurrentSelectedModule.packageName)) {
+                if (!Intents.openModuleSettings(context, mCurrentSelectedModule.packageName)) {
                     toast(R.string.alert_module_cannot_open);
                 }
                 return true;
@@ -123,22 +124,10 @@ public class ModuleManagerFragment extends PageFragment implements SearchView.On
     }
 
     @Override public void onModuleStateChanged() {
-        final SharedPreferences defaultConfigSP = AppGlobals.getDefaultConfigSP();
-        boolean shouldShowAlertDialog = defaultConfigSP.getBoolean(AppConstants.SP_KEY_SHOW_DIALOG_WHEN_MODULE_STATE_CHANGED, true);
-        if (shouldShowAlertDialog) {
-            Dialogs.create(requireActivity())
-                    .message(R.string.module_state_changed_alert_content)
-                    .checkbox(R.string.dont_show_again)
-                    .positiveButton(R.string.ok, dialogInfo -> {
-                        CheckBox checkbox = dialogInfo.checkbox;
-                        assert checkbox != null;
-                        if (checkbox.isChecked()) {
-                            defaultConfigSP.edit()
-                                    .putBoolean(AppConstants.SP_KEY_SHOW_DIALOG_WHEN_MODULE_STATE_CHANGED, false)
-                                    .apply();
-                        }
-                    })
-                    .showIfActivityActivated();
+        Activity activity = getActivity();
+        if (activity != null) {
+            Dialogs.alertForConfig(activity, R.string.module_state_changed_alert_content,
+                    AppConstants.SP_KEY_SHOW_DIALOG_WHEN_MODULE_STATE_CHANGED);
         }
     }
 }

@@ -3,13 +3,17 @@ package top.canyie.dreamland.manager.utils;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
+import java.util.List;
+
 /**
- * @author canyie\
+ * @author canyie
  */
 public final class Intents {
     private Intents() {
@@ -70,6 +74,22 @@ public final class Intents {
         Intent intent = new Intent();
         toAppDetailsSettings(packageName, intent);
         context.startActivity(intent);
+    }
+
+    public static boolean openModuleSettings(Context context, String packageName) {
+        Intent intentToResolve = new Intent(Intent.ACTION_MAIN);
+        intentToResolve.addCategory("de.robv.android.xposed.category.MODULE_SETTINGS");
+        intentToResolve.setPackage(packageName);
+        List<ResolveInfo> ris = context.getPackageManager().queryIntentActivities(intentToResolve, 0);
+        if (ris.isEmpty()) {
+            return openAppUserInterface(context, packageName);
+        }
+        ActivityInfo activityInfo = ris.get(0).activityInfo;
+        Intent intent = new Intent(intentToResolve);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setClassName(activityInfo.packageName, activityInfo.name);
+        context.startActivity(intent);
+        return true;
     }
 
     public static boolean openAppUserInterface(Context context, String packageName) {

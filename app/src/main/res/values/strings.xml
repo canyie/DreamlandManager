@@ -110,4 +110,5 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="changes_saved">Your changes have been saved.</string>
     <string name="mas_exit_alert">Do you want to quit editing? Your edits will not be saved.</string>
     <string name="save_and_exit">Save and exit</string>
+    <string name="invalidate_alert_settings">Invalidate alert settings</string>
 </resources>

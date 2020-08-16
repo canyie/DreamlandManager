@@ -26,6 +26,10 @@
         app:title="@string/manager"
         app:iconSpaceReserved="false">
         <Preference
+            app:key="invalidate_alert_settings"
+            app:title="@string/invalidate_alert_settings"
+            app:iconSpaceReserved="false" />
+        <Preference
             app:key="restart_manager"
             app:title="@string/restart_manager"
             app:iconSpaceReserved="false" />

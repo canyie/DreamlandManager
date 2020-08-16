@@ -3,6 +3,7 @@ package top.canyie.dreamland.manager.utils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
@@ -15,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
+import top.canyie.dreamland.manager.AppConstants;
+import top.canyie.dreamland.manager.AppGlobals;
 import top.canyie.dreamland.manager.R;
 
 /**
@@ -23,6 +26,25 @@ import top.canyie.dreamland.manager.R;
  */
 public final class Dialogs {
     private Dialogs() {
+    }
+
+    public static void alertForConfig(Activity activity, int message, String spKey) {
+        final SharedPreferences defaultConfig = AppGlobals.getDefaultConfigSP();
+        if (defaultConfig.getBoolean(spKey, true)) {
+            Dialogs.create(activity)
+                    .message(message)
+                    .checkbox(R.string.dont_show_again)
+                    .positiveButton(R.string.ok, dialogInfo -> {
+                        CheckBox checkbox = dialogInfo.checkbox;
+                        assert checkbox != null;
+                        if (checkbox.isChecked()) {
+                            defaultConfig.edit()
+                                    .putBoolean(spKey, false)
+                                    .apply();
+                        }
+                    })
+                    .showIfActivityActivated();
+        }
     }
 
     public static Builder create(Activity activity) {

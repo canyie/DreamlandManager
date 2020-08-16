@@ -6,10 +6,11 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceDataStore;
 import androidx.preference.PreferenceFragmentCompat;
 
+import top.canyie.dreamland.manager.AppConstants;
+import top.canyie.dreamland.manager.AppGlobals;
 import top.canyie.dreamland.manager.R;
 import top.canyie.dreamland.manager.core.Dreamland;
 import top.canyie.dreamland.manager.utils.CacheablePreferenceDataStore;
-import top.canyie.dreamland.manager.utils.Processes;
 
 /**
  * @author canyie
@@ -20,10 +21,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         getPreferenceManager().setPreferenceDataStore(new CacheablePreferenceDataStore(SettingsDataStore.INSTANCE));
         setPreferencesFromResource(R.xml.settings, rootKey);
-        findPreference("restart_manager").setOnPreferenceClickListener(preference -> {
-            System.exit(0);
-            return true;
-        });
+    }
+
+    @Override public boolean onPreferenceTreeClick(Preference preference) {
+        switch (preference.getKey()) {
+            case "invalidate_alert_settings":
+                AppGlobals.getDefaultConfigSP()
+                        .edit()
+                        .remove(AppConstants.SP_KEY_SHOW_DIALOG_WHEN_APP_STATE_CHANGED)
+                        .remove(AppConstants.SP_KEY_SHOW_DIALOG_WHEN_MODULE_STATE_CHANGED)
+                        .remove(AppConstants.SP_KEY_SHOW_ALERT_FOR_MAS)
+                        .apply();
+                return true;
+            case "restart_manager":
+                System.exit(0);
+                return true;
+        }
+        return super.onPreferenceTreeClick(preference);
     }
 
     private static final class SettingsDataStore extends PreferenceDataStore {

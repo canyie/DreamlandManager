@@ -5,22 +5,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Future;
 
 import top.canyie.dreamland.manager.AppConstants;
 import top.canyie.dreamland.manager.R;
-import top.canyie.dreamland.manager.core.AppInfo;
 import top.canyie.dreamland.manager.core.Dreamland;
 import top.canyie.dreamland.manager.core.MasData;
 import top.canyie.dreamland.manager.ui.adapters.MaseListAdapter;
@@ -55,6 +50,7 @@ public class MaseActivity extends BaseActivity implements MaseListAdapter.OnStat
         mRecyclerView = requireView(R.id.list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter = new MaseListAdapter(this, this));
+        Dialogs.alertForConfig(this, R.string.mas_alert, AppConstants.SP_KEY_SHOW_ALERT_FOR_MAS);
     }
 
     @Override protected void loadData(Bundle savedInstanceState) {
@@ -75,7 +71,6 @@ public class MaseActivity extends BaseActivity implements MaseListAdapter.OnStat
         mData = data;
         mAdapter.setData(data.enabled, data.apps);
         requireView(R.id.loading_progressbar).setVisibility(View.GONE);
-        requireView(R.id.loading_text).setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
@@ -99,7 +94,7 @@ public class MaseActivity extends BaseActivity implements MaseListAdapter.OnStat
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnSearchClickListener(v -> {
             if (mLoading) {
-                toast(R.string.loading);
+                toast(R.string.alert_wait_loading_complete);
                 mSearchView.onActionViewCollapsed();
             }
         });
