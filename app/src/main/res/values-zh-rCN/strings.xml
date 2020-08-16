@@ -111,4 +111,5 @@
     <string name="mas_exit_alert">您想要退出编辑吗？您的编辑将不会被保存。</string>
     <string name="save_and_exit">保存并退出</string>
     <string name="invalidate_alert_settings">清除提示设置</string>
+    <string name="module_error_installed_on_external">该模块不能被加载，因为它安装在 SD 卡上，请将它移至内部存储。</string>
 </resources>

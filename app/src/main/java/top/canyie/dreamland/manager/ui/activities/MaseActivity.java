@@ -88,8 +88,7 @@ public class MaseActivity extends BaseActivity implements MaseListAdapter.OnStat
     @Override public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_mase, menu);
         mSaveMenuItem = menu.findItem(R.id.save);
-        MenuItem searchMenuItem = menu.findItem(R.id.action_search);
-        mSearchView = (SearchView) searchMenuItem.getActionView();
+        mSearchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         mSearchView.setSubmitButtonEnabled(false);
         mSearchView.setOnQueryTextListener(this);
         mSearchView.setOnSearchClickListener(v -> {

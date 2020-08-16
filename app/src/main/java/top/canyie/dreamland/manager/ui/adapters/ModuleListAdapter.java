@@ -54,14 +54,17 @@ public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.Vi
         holder.version.setText(module.version);
         holder.icon.setImageDrawable(module.icon);
         holder.checkbox.setChecked(module.enabled);
-        if (!Dreamland.isInstalled()) {
-            holder.error.setText(R.string.framework_state_not_installed);
+        if (!Dreamland.isActive()) {
             holder.error.setVisibility(View.VISIBLE);
             holder.checkbox.setEnabled(false);
-        } else if (!Dreamland.isActive()) {
-            holder.error.setText(R.string.framework_state_installed_but_not_active);
-            holder.error.setVisibility(View.VISIBLE);
+            int errorResId = Dreamland.isInstalled()
+                    ? R.string.framework_state_installed_but_not_active
+                    : R.string.framework_state_not_installed;
+            holder.error.setText(errorResId);
+        } else if (module.isInstalledOnExternalStorage()) {
             holder.checkbox.setEnabled(false);
+            holder.error.setText(R.string.module_error_installed_on_external);
+            holder.error.setVisibility(View.VISIBLE);
         } else if (module.supported) {
             holder.checkbox.setEnabled(true);
             holder.checkbox.setOnCheckedChangeListener((view, isChecked) -> {
@@ -69,6 +72,7 @@ public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.Vi
                 if (mModuleStateChangedListener != null)
                     mModuleStateChangedListener.onModuleStateChanged();
             });
+            holder.error.setVisibility(View.GONE);
         } else {
             holder.error.setText(R.string.module_error_not_support);
             holder.error.setVisibility(View.VISIBLE);

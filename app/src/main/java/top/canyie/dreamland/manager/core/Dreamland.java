@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.Log;
 
 import androidx.annotation.Keep;
 
@@ -113,18 +113,29 @@ public final class Dreamland {
                 continue;
             }
 
-            CharSequence name = packageInfo.applicationInfo.loadLabel(pm);
-            String description = packageInfo.applicationInfo.metaData.getString(XPOSED_MODULE_DESCRIPTION, "");
-            boolean supportDreamland = packageInfo.applicationInfo.metaData.getBoolean(DREAMLAND_MODULE_SUPPORTED, true);
-            Drawable icon = packageInfo.applicationInfo.loadIcon(pm);
             String packageName = packageInfo.packageName;
-
             ModuleInfo module = new ModuleInfo(packageName, service != null && isModuleEnabled(packageName));
-            module.name = name.toString();
-            module.description = description;
+            module.name = packageInfo.applicationInfo.loadLabel(pm).toString();
+            {
+                Object rawDescription = packageInfo.applicationInfo.metaData.get(XPOSED_MODULE_DESCRIPTION);
+                String tmp = null;
+                if (rawDescription instanceof CharSequence) {
+                    tmp = rawDescription.toString().trim();
+                } else if (rawDescription instanceof Integer) {
+                    int resId = (int) rawDescription;
+                    try {
+                        tmp = pm.getResourcesForApplication(packageName).getString(resId).trim();
+                    } catch (Exception e) {
+                        Log.e(TAG, "Failed to parse description resource 0x"
+                                + Integer.toHexString(resId) + " for module " + module.name, e);
+                    }
+                }
+                module.description = tmp != null ? tmp : "";
+            }
+            module.supported = packageInfo.applicationInfo.metaData.getBoolean(DREAMLAND_MODULE_SUPPORTED, true);
             module.version = packageInfo.versionName;
-            module.icon = icon;
-            module.supported = supportDreamland;
+            module.icon = packageInfo.applicationInfo.loadIcon(pm);
+            module.flags = packageInfo.applicationInfo.flags;
             modules.add(module);
         }
         modules.sort(ModuleInfo.COMPARATOR);

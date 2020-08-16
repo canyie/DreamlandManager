@@ -111,4 +111,5 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="mas_exit_alert">Do you want to quit editing? Your edits will not be saved.</string>
     <string name="save_and_exit">Save and exit</string>
     <string name="invalidate_alert_settings">Invalidate alert settings</string>
+    <string name="module_error_installed_on_external">This module cannot be loaded because it\'s installed on the SD card, please move it to internal storage.</string>
 </resources>
