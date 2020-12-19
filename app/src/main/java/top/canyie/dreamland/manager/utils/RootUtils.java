@@ -20,7 +20,7 @@ public final class RootUtils {
 
     public static boolean reboot() {
         try {
-            boolean success = exec("reboot", true) == Shell.EXIT_STATUS_SUCCESS;
+            boolean success = exec("svc power reboot || reboot", true) == Shell.EXIT_STATUS_SUCCESS;
             if (success) onRebootSuccess();
             return success;
         } catch (IOException e) {
@@ -31,7 +31,16 @@ public final class RootUtils {
 
     public static boolean softReboot() {
         try {
-            boolean success =  restartInitService("zygote");
+            String[] commands = {
+                    // After Riru v22, it needs to set "ro.dalvik.vm.native.bridge" to riru loader
+                    // for inject into zygote. For hide Riru itself,
+                    // it will reset the system property to 0 after boot complete; and when zygote restarts,
+                    // the property won't automatically change to riru loader, riru won't be loaded.
+                    // Just manual reset the property to riru loader to make riru works.
+                    "[[ -f /system/lib/libriruloader.so ]] && resetprop ro.dalvik.vm.native.bridge libriruloader.so",
+                    "setprop ctl.restart zygote"
+            };
+            boolean success = exec(commands, true) == Shell.EXIT_STATUS_SUCCESS;
             if (success) onRebootSuccess();
             return success;
         } catch (IOException e) {
@@ -44,11 +53,9 @@ public final class RootUtils {
         try {
             String[] commands = {
                     // Create a flag used by some kernels to boot into recovery.
-                    "if [ -d /cache/recovery ]; then",
-                    "mkdir /cache/recovery",
-                    "fi",
+                    "[[ -d /cache/recovery ]] || mkdir /cache/recovery",
                     "touch /cache/recovery/boot",
-                    "reboot recovery"
+                    "svc power reboot recovery || reboot recovery"
             };
             boolean success = exec(commands, true) == Shell.EXIT_STATUS_SUCCESS;
             if (success) onRebootSuccess();
