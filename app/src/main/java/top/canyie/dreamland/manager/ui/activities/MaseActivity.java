@@ -27,6 +27,7 @@ import top.canyie.dreamland.manager.utils.Threads;
  */
 public class MaseActivity extends BaseActivity implements MaseListAdapter.OnStateChangeListener, SearchView.OnQueryTextListener {
     private String mModulePackageName;
+    private String[] mDefScope;
     private RecyclerView mRecyclerView;
     private MaseListAdapter mAdapter;
     private Future<?> mTask;
@@ -41,6 +42,7 @@ public class MaseActivity extends BaseActivity implements MaseListAdapter.OnStat
         Intent sourceIntent = getIntent();
         String moduleName = sourceIntent.getStringExtra(AppConstants.KEY_MODULE_NAME);
         mModulePackageName = sourceIntent.getStringExtra(AppConstants.KEY_MODULE_PACKAGE);
+        mDefScope = sourceIntent.getStringArrayExtra(AppConstants.KEY_MODULE_DEFAULT_SCOPE);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setTitle(R.string.module_activation_scope);
@@ -56,7 +58,7 @@ public class MaseActivity extends BaseActivity implements MaseListAdapter.OnStat
     @Override protected void loadData(Bundle savedInstanceState) {
         mTask = Threads.getDefaultExecutor().submit(() -> {
             try {
-                MasData data = Dreamland.getMasDataFor(mModulePackageName);
+                MasData data = Dreamland.getMasDataFor(mModulePackageName, mDefScope);
                 Threads.execOnMainThread(() -> onData(data));
             } catch (InterruptedException ignored) {
                 // Interrupted. Ignore.

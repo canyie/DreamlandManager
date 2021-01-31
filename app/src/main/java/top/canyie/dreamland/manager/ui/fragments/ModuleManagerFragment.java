@@ -28,6 +28,7 @@ import top.canyie.dreamland.manager.utils.Dialogs;
 import top.canyie.dreamland.manager.utils.Intents;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author canyie
@@ -108,6 +109,9 @@ public class ModuleManagerFragment extends PageFragment implements SearchView.On
                     Intent intent = new Intent(requireContext(), MaseActivity.class);
                     intent.putExtra(AppConstants.KEY_MODULE_NAME, mCurrentSelectedModule.name);
                     intent.putExtra(AppConstants.KEY_MODULE_PACKAGE, mCurrentSelectedModule.packageName);
+                    Set<String> defaultScope = mCurrentSelectedModule.getDefaultScopeSet();
+                    if (defaultScope != null)
+                        intent.putExtra(AppConstants.KEY_MODULE_DEFAULT_SCOPE, defaultScope.toArray(new String[defaultScope.size()]));
                     startActivity(intent);
                 } else {
                     toast(R.string.framework_not_active);

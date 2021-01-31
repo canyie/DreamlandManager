@@ -21,6 +21,7 @@ import java.util.List;
 
 import top.canyie.dreamland.manager.R;
 import top.canyie.dreamland.manager.core.AppInfo;
+import top.canyie.dreamland.manager.core.MasData;
 import top.canyie.dreamland.manager.utils.Threads;
 
 /**
@@ -28,19 +29,21 @@ import top.canyie.dreamland.manager.utils.Threads;
  */
 public class MaseListAdapter extends RecyclerView.Adapter implements Filterable {
     private static final int POSITION_HEADER = 0;
+    private Context mCtx;
     private LayoutInflater mLayoutInflater;
-    private List<AppInfo> mSourceList;
-    private List<AppInfo> mFilteredList;
+    private List<MasData.AI> mSourceList;
+    private List<MasData.AI> mFilteredList;
     private boolean mMasEnabled;
     private OnStateChangeListener mListener;
     private F mFilter;
 
     public MaseListAdapter(Context context, OnStateChangeListener l) {
+        mCtx = context;
         mLayoutInflater = LayoutInflater.from(context);
         mListener = l;
     }
 
-    public synchronized void setData(boolean masEnabled, List<AppInfo> apps) {
+    public synchronized void setData(boolean masEnabled, List<MasData.AI> apps) {
         mMasEnabled = masEnabled;
         mSourceList = apps;
         mFilteredList = apps;
@@ -68,7 +71,7 @@ public class MaseListAdapter extends RecyclerView.Adapter implements Filterable 
         } else {
             ItemHolder itemHolder = (ItemHolder) holder;
             int positionInList = position - 1; // Exclude header
-            AppInfo appInfo = mFilteredList.get(positionInList);
+            MasData.AI appInfo = mFilteredList.get(positionInList);
             itemHolder.appName.setText(appInfo.name);
             itemHolder.appPackageName.setText(appInfo.packageName);
             itemHolder.appIcon.setImageDrawable(appInfo.icon);
@@ -78,6 +81,15 @@ public class MaseListAdapter extends RecyclerView.Adapter implements Filterable 
                 mFilteredList.get(positionInList).enabled = isChecked;
                 mListener.onChanged();
             });
+
+            if (appInfo.required) {
+                itemHolder.appNotice.setVisibility(View.VISIBLE);
+                itemHolder.appNotice.setText(R.string.required_for_module);
+                itemHolder.appNotice.setTextColor(mCtx.getColor(R.color.colorAccent));
+            } else {
+                itemHolder.appNotice.setVisibility(View.GONE);
+            }
+
             itemHolder.itemView.setOnClickListener(v -> {
                 if (mMasEnabled) itemHolder.appCheckbox.performClick();
             });
@@ -120,6 +132,7 @@ public class MaseListAdapter extends RecyclerView.Adapter implements Filterable 
         TextView appPackageName;
         ImageView appIcon;
         CheckBox appCheckbox;
+        TextView appNotice;
 
         ItemHolder(@NonNull View itemView) {
             super(itemView);
@@ -127,12 +140,13 @@ public class MaseListAdapter extends RecyclerView.Adapter implements Filterable 
             appPackageName = itemView.findViewById(R.id.app_package_name);
             appIcon = itemView.findViewById(R.id.app_icon);
             appCheckbox = itemView.findViewById(R.id.app_checkbox);
+            appNotice = itemView.findViewById(R.id.app_error);
         }
     }
 
     final class F extends Filter {
         @Override protected FilterResults performFiltering(CharSequence constraint) {
-            List<AppInfo> sourceList;
+            List<MasData.AI> sourceList;
             synchronized (MaseListAdapter.this) {
                 sourceList = mSourceList;
             }
@@ -158,7 +172,7 @@ public class MaseListAdapter extends RecyclerView.Adapter implements Filterable 
         @SuppressWarnings("unchecked") @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             synchronized (MaseListAdapter.this) {
-                mFilteredList = (List<AppInfo>) results.values;
+                mFilteredList = (List<MasData.AI>) results.values;
                 notifyDataSetChanged();
             }
         }

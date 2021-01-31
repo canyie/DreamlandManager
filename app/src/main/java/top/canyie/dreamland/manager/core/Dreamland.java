@@ -32,16 +32,12 @@ import java.util.Set;
  * @author canyie
  */
 public final class Dreamland {
-    private static final String TAG = "Dreamland";
+    public static final String TAG = "DreamlandManager";
     private static final String SYSTEM_LIB_DIR = "/system/lib/";
     private static final String SYSTEM_LIB64_DIR = "/system/lib64/";
     private static final String CORE_LIB_NAME = "libriru_dreamland.so";
     public static final File CORE_JAR_FILE = new File("/system/framework/dreamland.jar");
     private static final String MANAGER_PACKAGE_NAME = BuildConfig.APPLICATION_ID;
-    private static final String XPOSED_MODULE = "xposedmodule";
-    private static final String XPOSED_MODULE_DESCRIPTION = "xposeddescription";
-    private static final String DREAMLAND_MODULE_SUPPORTED = "dreamland-supported";
-    private static final String DREAMLAND_MODULE_MIN_VERSION = "dreamland-min-version";
     private static int version = -1;
     private static IDreamlandManager service;
     private static Set<String> sEnabledApps;
@@ -107,49 +103,37 @@ public final class Dreamland {
                 continue;
             }
 
-            boolean isXposedModule = packageInfo.applicationInfo.metaData.getBoolean(XPOSED_MODULE, false);
-
-            if (!isXposedModule) {
+            if (!ModuleInfo.isModule(packageInfo)) {
                 continue;
             }
 
             String packageName = packageInfo.packageName;
-            ModuleInfo module = new ModuleInfo(packageName, service != null && isModuleEnabled(packageName));
-            module.name = packageInfo.applicationInfo.loadLabel(pm).toString();
-            {
-                Object rawDescription = packageInfo.applicationInfo.metaData.get(XPOSED_MODULE_DESCRIPTION);
-                String tmp = null;
-                if (rawDescription instanceof CharSequence) {
-                    tmp = rawDescription.toString().trim();
-                } else if (rawDescription instanceof Integer) {
-                    int resId = (int) rawDescription;
-                    try {
-                        tmp = pm.getResourcesForApplication(packageName).getString(resId).trim();
-                    } catch (Exception e) {
-                        Log.e(TAG, "Failed to parse description resource 0x"
-                                + Integer.toHexString(resId) + " for module " + module.name, e);
-                    }
-                }
-                module.description = tmp != null ? tmp : "";
-            }
-            module.supported = packageInfo.applicationInfo.metaData.getBoolean(DREAMLAND_MODULE_SUPPORTED, true);
-            module.version = packageInfo.versionName;
-            module.icon = packageInfo.applicationInfo.loadIcon(pm);
-            module.flags = packageInfo.applicationInfo.flags;
+            boolean enabled = service != null && isModuleEnabled(packageName);
+            ModuleInfo module = new ModuleInfo(packageInfo, pm, enabled);
             modules.add(module);
         }
         modules.sort(ModuleInfo.COMPARATOR);
         return modules;
     }
 
-    public static MasData getMasDataFor(String module) throws InterruptedException {
+    public static MasData getMasDataFor(String module, String[] defScope) throws InterruptedException {
         MasData data = new MasData();
         String[] remoteData = getEnabledAppsFor(module);
         Set<String> enabledFor;
+        Set<String> defaultScopeSet = null;
+        if (defScope != null) {
+            defaultScopeSet = new HashSet<>(defScope.length);
+            Collections.addAll(defaultScopeSet, defScope);
+        }
         if (remoteData != null) {
             data.enabled = true;
             enabledFor = new HashSet<>(remoteData.length);
             Collections.addAll(enabledFor, remoteData);
+        } else if (defaultScopeSet != null) {
+            data.enabled = true;
+            enabledFor = defaultScopeSet;
+            Log.i(TAG, "Auto applying default scope config for module " + module);
+            setEnabledAppsFor(module, defScope);
         } else {
             data.enabled = false;
             enabledFor = Collections.emptySet();
@@ -157,12 +141,14 @@ public final class Dreamland {
         Threads.throwIfInterrupted();
         PackageManager pm = AppGlobals.getApp().getPackageManager();
         List<ApplicationInfo> rawAppInfos = pm.getInstalledApplications(0);
-        List<AppInfo> appInfos = new ArrayList<>(rawAppInfos.size());
+        List<MasData.AI> appInfos = new ArrayList<>(rawAppInfos.size());
         for (ApplicationInfo applicationInfo : rawAppInfos) {
             if (MANAGER_PACKAGE_NAME.equals(applicationInfo.packageName)) continue;
-            appInfos.add(new AppInfo(pm, applicationInfo, enabledFor.contains(applicationInfo.packageName)));
+            MasData.AI ai = new MasData.AI(pm, applicationInfo, enabledFor.contains(applicationInfo.packageName));
+            ai.required = defaultScopeSet != null && defaultScopeSet.contains(applicationInfo.packageName);
+            appInfos.add(ai);
         }
-        appInfos.sort(AppInfo.COMPARATOR);
+        appInfos.sort(MasData.AI.COMPARATOR);
         Threads.throwIfInterrupted();
         data.apps = appInfos;
         return data;
