@@ -1,9 +1,6 @@
 package top.canyie.dreamland.manager.ui.fragments;
 
 import android.Manifest;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.view.View;
@@ -15,19 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 
-import top.canyie.dreamland.manager.AppConstants;
-
 import top.canyie.dreamland.manager.R;
 import top.canyie.dreamland.manager.core.Dreamland;
-import top.canyie.dreamland.manager.ui.activities.InstallationActivity;
-import top.canyie.dreamland.manager.ui.activities.MainActivity;
 import top.canyie.dreamland.manager.utils.DLog;
 import top.canyie.dreamland.manager.utils.DeviceUtils;
 import top.canyie.dreamland.manager.utils.Dialogs;
 import top.canyie.dreamland.manager.utils.FileUtils;
-import top.canyie.dreamland.manager.utils.Intents;
 import top.canyie.dreamland.manager.utils.SELinuxHelper;
-import top.canyie.dreamland.manager.utils.Threads;
 
 import java.io.File;
 import java.io.IOException;
@@ -271,31 +262,6 @@ public class StatusFragment extends PageFragment
                 .message(R.string.internal_test_only)
                 .positiveButton(R.string.ok, null)
                 .showIfActivityActivated();
-    }
-
-    @Deprecated private void startInstallOrUninstallOld(boolean isInstall) {
-        if (!checkInstallPermission(isInstall)) {
-            return;
-        }
-        MainActivity activity = (MainActivity) getActivity();
-        if (activity == null || activity.isFinishing() || activity.isDestroyed()) return;
-        ProgressDialog progressDialog = ProgressDialog.show(activity, null, getString(R.string.alert_wait_framework_download_complete), true, false);
-        Threads.getDefaultExecutor().execute(() -> {
-            File frameworkZip = new File(activity.getExternalFilesDir("downloads"), "dreamland.zip");
-            boolean copied = downloadFrameworkZip(frameworkZip);
-
-            Threads.execOnMainThread(() -> {
-                progressDialog.dismiss();
-                if (copied) {
-                    Intent intent = new Intent(activity, InstallationActivity.class);
-                    intent.putExtra(AppConstants.KEY_FRAMEWORK_ZIP_FILE, frameworkZip.getAbsolutePath());
-                    intent.putExtra(AppConstants.KEY_IS_INSTALL, isInstall);
-                    activity.startActivityForResult(intent, InstallationActivity.REQUEST_CODE);
-                } else {
-                    activity.toast(R.string.alert_framework_zip_download_failed);
-                }
-            });
-        });
     }
 
     private void requestInstallPermissions(int requestCode) {

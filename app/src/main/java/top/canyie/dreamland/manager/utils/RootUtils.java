@@ -20,9 +20,7 @@ public final class RootUtils {
 
     public static boolean reboot() {
         try {
-            boolean success = exec("svc power reboot || reboot", true) == Shell.EXIT_STATUS_SUCCESS;
-            if (success) onRebootSuccess();
-            return success;
+            return exec("svc power reboot || reboot", true) == Shell.EXIT_STATUS_SUCCESS;
         } catch (IOException e) {
             DLog.e(TAG, "reboot failed", e);
         }
@@ -40,9 +38,7 @@ public final class RootUtils {
                     "[[ -f /system/lib/libriruloader.so ]] && resetprop ro.dalvik.vm.native.bridge libriruloader.so",
                     "setprop ctl.restart zygote"
             };
-            boolean success = exec(commands, true) == Shell.EXIT_STATUS_SUCCESS;
-            if (success) onRebootSuccess();
-            return success;
+            return exec(commands, true) == Shell.EXIT_STATUS_SUCCESS;
         } catch (IOException e) {
             DLog.e(TAG, "soft reboot failed", e);
         }
@@ -57,9 +53,7 @@ public final class RootUtils {
                     "touch /cache/recovery/boot",
                     "svc power reboot recovery || reboot recovery"
             };
-            boolean success = exec(commands, true) == Shell.EXIT_STATUS_SUCCESS;
-            if (success) onRebootSuccess();
-            return success;
+            return exec(commands, true) == Shell.EXIT_STATUS_SUCCESS;
         } catch (IOException e) {
             DLog.e(TAG, "reboot to recovery failed", e);
         }
@@ -109,16 +103,6 @@ public final class RootUtils {
         Threads.getDefaultExecutor().execute(() -> RootUtils.forceStopApp(packageName));
     }
 
-    public static void setSELinuxEnforce(boolean enforce) throws IOException {
-        final String command = "setenforce " + (enforce ? 1 : 0);
-        int code = exec(command, false);
-        if (code != Shell.EXIT_STATUS_SUCCESS) {
-            IOException ioException = new IOException("Failed to set SELinux mode, exitCode " + code);
-            DLog.e(TAG, ioException);
-            throw ioException;
-        }
-    }
-
     public static void moveFile(String src, String dest) throws IOException {
         src = escape(src);
         dest = escape(dest);
@@ -139,12 +123,5 @@ public final class RootUtils {
     private static int exec(String[] commands, boolean allowExecOnMainThread) throws IOException {
         Shell.Result r = Shell.su().add(commands).allowExecOnMainThread(allowExecOnMainThread).start();
         return r.waitInterruptible();
-    }
-
-    private static void onRebootSuccess() {
-        // The device is rebooting. This process will be killed by the system,
-        // so we voluntarily exit, no need to bother the system. :)
-        DLog.i(TAG, "Exiting dreamland manager process because device is rebooting...");
-        System.exit(0);
     }
 }

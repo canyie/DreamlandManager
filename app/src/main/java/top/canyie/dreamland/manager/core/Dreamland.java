@@ -15,7 +15,6 @@ import top.canyie.dreamland.ipc.IDreamlandManager;
 
 import top.canyie.dreamland.manager.AppGlobals;
 import top.canyie.dreamland.manager.BuildConfig;
-import top.canyie.dreamland.manager.core.installation.Installer;
 import top.canyie.dreamland.manager.utils.DeviceUtils;
 import top.canyie.dreamland.manager.utils.FileUtils;
 import top.canyie.dreamland.manager.utils.RuntimeHelper;
@@ -268,15 +267,6 @@ public final class Dreamland {
             }
             Collections.addAll(sEnabledModules, remoteData);
         }
-    }
-
-    /**
-     * Get instance for {@link Installer}
-     * @deprecated Not supported install manually now, please use Magisk.
-     * @return Never return
-     */
-    @Deprecated public static Installer getInstaller() {
-        throw new UnsupportedOperationException("Unsupported");
     }
 
     public static int getVersion() {
