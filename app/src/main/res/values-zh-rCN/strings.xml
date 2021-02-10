@@ -71,7 +71,6 @@
     <string name="safe_mode">安全模式</string>
     <string name="answer_to_qq_group_question">QQ群入群问题：canyie</string>
     <string name="installation_package_not_publicly_available">框架安装包未公开提供</string>
-    <string name="internal_test_only">目前，梦境框架非常非常不稳定，所以它并未公开提供；\n如果您想要参加我们的内部测试，请在关于页面中加入我们的QQ群。</string>
     <string name="settings">设置</string>
     <string name="framework">框架</string>
     <string name="safemode_summary">如果安全模式已启用，那么只运行核心功能，不会加载任何模块。</string>
@@ -92,4 +91,9 @@
     <string name="invalidate_alert_settings">清除提示设置</string>
     <string name="module_error_installed_on_external">该模块不能被加载，因为它安装在 SD 卡上，请将它移至内部存储。</string>
     <string name="required_for_module">该模块需要注入此应用。</string>
+    <string name="select_download_channel">选择下载通道…</string>
+    <string name="uninstall_title">卸载步骤</string>
+    <string name="uninstall_steps">只需要在Magisk Manager中卸载“Riru-Dreamland”模块并重启，框架就会被卸载。</string>
+    <string name="choose_browser">请选择浏览器</string>
+    <string name="download_channels_description">你将会下载一个Magisk模块文件，下载完成后请在Magisk Manager或自定义Recovery中刷入它。\n\n下载通道说明：\nbeta：测试版本，由开发者不定期发布\ncanary：测试版本，由CI自动构建，使用风险自负</string>
 </resources>

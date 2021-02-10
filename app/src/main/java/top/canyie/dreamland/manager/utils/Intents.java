@@ -12,6 +12,8 @@ import android.provider.Settings;
 
 import java.util.List;
 
+import top.canyie.dreamland.manager.R;
+
 /**
  * @author canyie
  */
@@ -104,6 +106,12 @@ public final class Intents {
         Intent intent = new Intent(Intent.ACTION_DELETE, package2Uri(packageName));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    public static void openUrl(Context context, String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(Intent.createChooser(intent, context.getString(R.string.choose_browser)));
     }
 
     private static void toAppDetailsSettings(String packageName, Intent intent) {

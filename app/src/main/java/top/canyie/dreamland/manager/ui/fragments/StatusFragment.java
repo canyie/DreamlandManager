@@ -1,6 +1,9 @@
 package top.canyie.dreamland.manager.ui.fragments;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.view.View;
@@ -9,19 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 
 import top.canyie.dreamland.manager.R;
+import top.canyie.dreamland.manager.core.DownloadChannel;
 import top.canyie.dreamland.manager.core.Dreamland;
 import top.canyie.dreamland.manager.utils.DLog;
 import top.canyie.dreamland.manager.utils.DeviceUtils;
 import top.canyie.dreamland.manager.utils.Dialogs;
-import top.canyie.dreamland.manager.utils.FileUtils;
+import top.canyie.dreamland.manager.utils.Intents;
 import top.canyie.dreamland.manager.utils.SELinuxHelper;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author canyie
@@ -217,7 +219,7 @@ public class StatusFragment extends PageFragment
                         .title(R.string.install_warning_title)
                         .message(R.string.install_warning_content)
                         .negativeButton(R.string.cancel, null)
-                        .positiveButton(R.string.str_continue, dialogInfo -> alertForInternalTestOnly())
+                        .positiveButton(R.string.str_continue, dialogInfo -> onInstall())
                         .cancelable(false)
                         .showIfActivityActivated();
                 break;
@@ -225,7 +227,7 @@ public class StatusFragment extends PageFragment
                 Dialogs.create(requireActivity())
                         .title(R.string.uninstall_alert)
                         .negativeButton(R.string.cancel, null)
-                        .positiveButton(R.string.str_continue, dialogInfo -> alertForInternalTestOnly())
+                        .positiveButton(R.string.str_continue, dialogInfo -> onUninstall())
                         .showIfActivityActivated();
                 break;
             default:
@@ -237,31 +239,34 @@ public class StatusFragment extends PageFragment
         Dreamland.setSafeMode(isChecked);
     }
 
+    void onInstall() {
+        Activity activity = getActivity();
+        if (activity == null || activity.isFinishing() || activity.isDestroyed()) return;
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.select_download_channel)
+                .setMessage(R.string.download_channels_description)
+                .setPositiveButton(DownloadChannel.BETA.getName(), new OpenUrl(DownloadChannel.BETA))
+                .setNegativeButton(DownloadChannel.CANARY.getName(), new OpenUrl(DownloadChannel.CANARY))
+                .setNeutralButton(R.string.cancel, null)
+                .show();
+    }
+
+    void onUninstall() {
+        Activity activity = getActivity();
+        if (activity == null) return;
+        Dialogs.create(activity)
+                .title(R.string.uninstall_title)
+                .message(R.string.uninstall_steps)
+                .positiveButton(R.string.ok, null)
+                .showIfActivityActivated();
+    }
+
     private boolean checkInstallPermission(boolean isInstall) {
         if (!checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             requestInstallPermissions(isInstall ? PERMISSION_REQUEST_FOR_INSTALL : PERMISSION_REQUEST_FOR_UNINSTALL);
             return false;
         }
         return true;
-    }
-
-    private static boolean downloadFrameworkZip(File dest) {
-        try {
-            // TODO: Download framework zip from internet
-            FileUtils.copyFromAssets("dreamland-v1.zip", dest);
-            return true;
-        } catch (IOException e) {
-            DLog.e(TAG, "Failed to copy framework zip", e);
-            return false;
-        }
-    }
-
-    private void alertForInternalTestOnly() {
-        Dialogs.create(requireActivity())
-                .title(R.string.installation_package_not_publicly_available)
-                .message(R.string.internal_test_only)
-                .positiveButton(R.string.ok, null)
-                .showIfActivityActivated();
     }
 
     private void requestInstallPermissions(int requestCode) {
@@ -314,5 +319,15 @@ public class StatusFragment extends PageFragment
         int frameworkVersion;
         boolean detectVerifiedBoot, isVerifiedBootActive, checkVerifiedBootFailed;
         boolean isSELinuxEnabled, isSELinuxEnforced;
+    }
+
+    private final class OpenUrl implements Dialog.OnClickListener {
+        private DownloadChannel channel;
+        OpenUrl(DownloadChannel channel) {
+            this.channel = channel;
+        }
+        @Override public void onClick(DialogInterface dialog, int which) {
+            Intents.openUrl(StatusFragment.this.requireContext(), channel.getUrl());
+        }
     }
 }
