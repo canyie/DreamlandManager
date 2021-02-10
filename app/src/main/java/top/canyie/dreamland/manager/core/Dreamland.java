@@ -17,7 +17,6 @@ import top.canyie.dreamland.manager.AppGlobals;
 import top.canyie.dreamland.manager.BuildConfig;
 import top.canyie.dreamland.manager.utils.DeviceUtils;
 import top.canyie.dreamland.manager.utils.FileUtils;
-import top.canyie.dreamland.manager.utils.RuntimeHelper;
 import top.canyie.dreamland.manager.utils.Threads;
 
 import java.io.File;
@@ -60,9 +59,8 @@ public final class Dreamland {
 
     public static boolean isSupported() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                && Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q
-                && DeviceUtils.isArmV7OrArm64()
-                && RuntimeHelper.isArt();
+                && Build.VERSION.SDK_INT <= 30
+                && DeviceUtils.isArmV7OrArm64();
     }
 
     public static boolean isSafeMode() {
