@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -41,6 +42,13 @@ public class AboutActivity extends BaseActivity {
         assert actionBar != null;
         actionBar.setTitle(R.string.about);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        int iconSize = getResources().getDimensionPixelSize(R.dimen.about_launcher_icon_size);
+        View iconView = requireView(mehdi.sakout.aboutpage.R.id.image);
+        ViewGroup.LayoutParams layoutParams = iconView.getLayoutParams();
+        layoutParams.width = iconSize;
+        layoutParams.height = iconSize;
+        iconView.setLayoutParams(layoutParams);
     }
 
     private Element createVersionElement() {

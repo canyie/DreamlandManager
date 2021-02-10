@@ -3,4 +3,5 @@
     <dimen name="small_image_width">24dp</dimen>
     <dimen name="small_image_height">24dp</dimen>
     <dimen name="device_info_item_height">48dp</dimen>
+    <dimen name="about_launcher_icon_size">80dp</dimen>
 </resources>
