@@ -17,6 +17,7 @@ import top.canyie.dreamland.manager.R;
 
 import mehdi.sakout.aboutpage.AboutPage;
 import mehdi.sakout.aboutpage.Element;
+import top.canyie.dreamland.manager.utils.Intents;
 import top.canyie.dreamland.manager.utils.ToastCompat;
 
 /**
@@ -31,6 +32,7 @@ public class AboutActivity extends BaseActivity {
                 .addItem(createVersionElement())
                 .addItem(createThanksElement())
                 .addItem(createQQGroupElement())
+                .addItem(createTelegramGroupElement())
                 .addTwitter("canyie2977")
                 .addGitHub("canyie", "GitHub: canyie")
                 .addWebsite("https://blog.canyie.top/", getString(R.string.about_my_blog));
@@ -74,10 +76,26 @@ public class AboutActivity extends BaseActivity {
         return element;
     }
 
+    private Element createTelegramGroupElement() {
+        Element element = new Element();
+        element.setTitle(getString(R.string.about_join_tg_group));
+        element.setIconDrawable(R.drawable.ic_telegram);
+        element.setIconTint(R.color.about_play_store_color);
+        element.setOnClickListener(v -> {
+            try {
+                Intents.openUrl(this, "https://t.me/DreamlandFramework");
+            } catch (ActivityNotFoundException e) {
+                toast(R.string.about_tg_not_installed);
+            }
+        });
+        return element;
+    }
+
     private Element createQQGroupElement() {
         Element element = new Element();
         element.setTitle(getString(R.string.about_join_qq_group));
-        element.setIconDrawable(R.drawable.ic_qq); // FIXME: This icon appears filled with black.
+        element.setIconDrawable(R.drawable.ic_qq);
+        element.setIconTint(R.color.about_youtube_color);
 
         element.setOnClickListener(v -> {
             final String qqGroupKey = "eSLRhvqWfeIuxciJyvo8Lu-On3tKgL2l";

@@ -96,5 +96,7 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="uninstall_steps">Just uninstall the \"Riru-Dreamland\" module in Magisk Manager and restart your device, and the Dreamland framework will be uninstalled.</string>
     <string name="choose_browser">Choose browser</string>
     <string name="download_channels_description">You will download a magisk module file, please flash it in Magisk Module or custom recovery.\n\nDescription of download channels:\nbeta: Test version, released by the developer.\ncanaey: Test version, automatically builded by CI, use of the version is at your own risk.\n</string>
+    <string name="about_join_tg_group">Join my telegram group</string>
+    <string name="about_tg_not_installed">Telegram not installed on the device.</string>
 
 </resources>
