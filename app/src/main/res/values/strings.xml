@@ -12,7 +12,7 @@
     <string name="verified_boot_state_active">Verified Boot is active</string>
     <string name="verified_boot_state_not_detected">No Verified Boot detected</string>
     <string name="selinux_mode_disabled">SELinux is disabled</string>
-    <string name="selinux_mode_permissive">SELinux mode: permissive</string>
+    <string name="selinux_mode_permissive">SELinux mode: permissive! Malicious programs can take full control of your device!</string>
     <string name="selinux_mode_enforcing">SELinux mode: enforcing</string>
     <string name="about">About</string>
     <string name="app_description">Dreamland Framework: A third-party Xposed framework， supports Android 7.0~11.</string>

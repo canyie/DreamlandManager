@@ -194,6 +194,7 @@ public class StatusFragment extends PageFragment
                 seLinuxModeText.setText(R.string.selinux_mode_enforcing);
             } else {
                 seLinuxModeText.setText(R.string.selinux_mode_permissive);
+                seLinuxModeText.setTextColor(requireContext().getColor(R.color.color_error_dark));
             }
         } else {
             seLinuxModeText.setText(R.string.selinux_mode_disabled);

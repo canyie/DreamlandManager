@@ -12,7 +12,7 @@
     <string name="verified_boot_state_active">引导验证程序已启用</string>
     <string name="verified_boot_state_not_detected">未检测到引导验证程序</string>
     <string name="selinux_mode_disabled">SELinux已禁用</string>
-    <string name="selinux_mode_permissive">SELinux运行在宽容模式</string>
+    <string name="selinux_mode_permissive">SELinux运行在宽容模式！恶意程序可以借此完全控制您的设备！</string>
     <string name="selinux_mode_enforcing">SELinux运行在强制模式</string>
     <string name="about">关于</string>
     <string name="app_description">梦境框架是一个第三方的Xposed框架实现，支持Android 7.0~11。</string>
