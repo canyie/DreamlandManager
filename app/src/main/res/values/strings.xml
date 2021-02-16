@@ -15,7 +15,7 @@
     <string name="selinux_mode_permissive">SELinux mode: permissive</string>
     <string name="selinux_mode_enforcing">SELinux mode: enforcing</string>
     <string name="about">About</string>
-    <string name="app_description">Dreamland Framework(developing): A third-party Xposed framework.</string>
+    <string name="app_description">Dreamland Framework: A third-party Xposed framework， supports Android 7.0~11.</string>
     <string name="about_my_blog">Visit my blog</string>
     <string name="about_join_qq_group">Join my QQ group</string>
     <string name="about_alert_qq_is_unavailable">You do not have QQ installed or the version is too low.</string>
@@ -27,7 +27,7 @@
     <string name="module_action_info">Module info</string>
     <string name="module_action_uninstall">Uninstall</string>
     <string name="about_thanks">Credits</string>
-    <string name="about_thanks_alert_content">"Thanks the origin Xposed framework's author rovo89, ART hook library SandHook's author Swift Gan, GOT hook library xhook's author iqiyi, and thanks my friends for helping me! :)   "</string>
+    <string name="about_thanks_alert_content">"Thanks the origin Xposed framework's author rovo89, Thanks @LMFuture for providing the icon, and thanks my friends for helping me! :)   "</string>
     <string name="ok">OK</string>
     <string name="alert_wait_loading_complete">Please wait for loading to complete…</string>
     <string name="action_reboot">Reboot</string>
@@ -70,7 +70,6 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="install_error_bad_zip">This is a bad framework zip.</string>
     <string name="safe_mode">Safe mode</string>
     <string name="answer_to_qq_group_question">Answer to QQ Group question: canyie</string>
-    <string name="installation_package_not_publicly_available">Installation package is not publicly available</string>
     <string name="settings">Settings</string>
     <string name="framework">Framework</string>
     <string name="safemode_summary">If safe mode is enabled, only the core functions are enabled and no modules will be loaded.</string>

@@ -15,7 +15,7 @@
     <string name="selinux_mode_permissive">SELinux运行在宽容模式</string>
     <string name="selinux_mode_enforcing">SELinux运行在强制模式</string>
     <string name="about">关于</string>
-    <string name="app_description">梦境框架是一个类似Xposed的框架，正在开发。</string>
+    <string name="app_description">梦境框架是一个第三方的Xposed框架实现，支持Android 7.0~11。</string>
     <string name="about_my_blog">欢迎访问我的博客</string>
     <string name="about_join_qq_group">加入QQ群</string>
     <string name="about_alert_qq_is_unavailable">您没有安装QQ或者版本过低。</string>
@@ -27,7 +27,7 @@
     <string name="module_action_info">模块信息</string>
     <string name="module_action_uninstall">卸载</string>
     <string name="about_thanks">致谢</string>
-    <string name="about_thanks_alert_content">感谢原版Xposed作者rovo89，SandHook作者Swift Gan，xhook作者爱奇艺；还有许许多多的小伙伴在帮助我，谢谢你们 :)</string>
+    <string name="about_thanks_alert_content">感谢原版Xposed作者rovo89；感谢LMFuture提供的图标；还有许许多多的小伙伴在帮助我，谢谢你们 :)</string>
     <string name="ok">好的</string>
     <string name="alert_wait_loading_complete">客官不要心急，还没加载完呢……</string>
     <string name="action_reboot">重启</string>
@@ -70,7 +70,6 @@
     <string name="install_error_bad_zip">此框架包已损坏。</string>
     <string name="safe_mode">安全模式</string>
     <string name="answer_to_qq_group_question">QQ群入群问题：canyie</string>
-    <string name="installation_package_not_publicly_available">框架安装包未公开提供</string>
     <string name="settings">设置</string>
     <string name="framework">框架</string>
     <string name="safemode_summary">如果安全模式已启用，那么只运行核心功能，不会加载任何模块。</string>
@@ -97,5 +96,5 @@
     <string name="choose_browser">请选择浏览器</string>
     <string name="download_channels_description">你将会下载一个Magisk模块文件，下载完成后请在Magisk Manager或自定义Recovery中刷入它。\n\n下载通道说明：\nbeta：测试版本，由开发者不定期发布\ncanary：测试版本，由CI自动构建，使用风险自负</string>
     <string name="about_join_tg_group">加入telegram群</string>
-    <string name="about_tg_not_installed">此设备上没有安装telegram或版本guo\'di</string>
+    <string name="about_tg_not_installed">此设备上没有安装telegram。</string>
 </resources>
