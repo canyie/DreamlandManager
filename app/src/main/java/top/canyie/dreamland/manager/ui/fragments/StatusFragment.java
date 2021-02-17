@@ -96,13 +96,14 @@ public class StatusFragment extends PageFragment
 
     @Override protected I loadDataImpl() {
         I info = new I();
-        info.frameworkVersion = Dreamland.getVersion();
+        info.versionName = Dreamland.getVersionName();
+        info.versionCode = Dreamland.getVersion();
         if (Dreamland.isActive()) {
-            info.frameworkState = Dreamland.isSafeMode() ? FRAMEWORK_STATE_SAFE_MODE : FRAMEWORK_STATE_ACTIVE;
+            info.state = Dreamland.isSafeMode() ? FRAMEWORK_STATE_SAFE_MODE : FRAMEWORK_STATE_ACTIVE;
         } else if (Dreamland.isInstalled()) {
-            info.frameworkState = Dreamland.isCompleteInstalled() ? FRAMEWORK_STATE_COMPLETE_INSTALLED : FRAMEWORK_STATE_BROKEN;
+            info.state = Dreamland.isCompleteInstalled() ? FRAMEWORK_STATE_COMPLETE_INSTALLED : FRAMEWORK_STATE_BROKEN;
         } else {
-            info.frameworkState = FRAMEWORK_STATE_NOT_INSTALLED;
+            info.state = FRAMEWORK_STATE_NOT_INSTALLED;
         }
 
         try {
@@ -129,9 +130,9 @@ public class StatusFragment extends PageFragment
         int cardImageRes;
         boolean supported;
 
-        switch (info.frameworkState) {
+        switch (info.state) {
             case FRAMEWORK_STATE_ACTIVE:
-                text = getString(R.string.framework_state_active, info.frameworkVersion);
+                text = getString(R.string.framework_state_active, info.versionName, info.versionCode);
                 normal = true;
                 cardImageRes = R.drawable.ic_check_circle;
                 supported = true;
@@ -159,7 +160,7 @@ public class StatusFragment extends PageFragment
                 supported = Dreamland.isSupported();
                 break;
             default:
-                throw new UnsupportedOperationException("Unexpected framework state: " + info.frameworkState);
+                throw new UnsupportedOperationException("Unexpected framework state: " + info.state);
         }
 
         statusText.setText(text);
@@ -316,8 +317,9 @@ public class StatusFragment extends PageFragment
     }*/
 
     private static final class I {
-        int frameworkState;
-        int frameworkVersion;
+        int state;
+        String versionName;
+        int versionCode;
         boolean detectVerifiedBoot, isVerifiedBootActive, checkVerifiedBootFailed;
         boolean isSELinuxEnabled, isSELinuxEnforced;
     }

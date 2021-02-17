@@ -36,6 +36,7 @@ public final class Dreamland {
     private static final String CORE_LIB_NAME = "libriru_dreamland.so";
     public static final File CORE_JAR_FILE = new File("/system/framework/dreamland.jar");
     private static final String MANAGER_PACKAGE_NAME = BuildConfig.APPLICATION_ID;
+    private static String versionName;
     private static int version = -1;
     private static IDreamlandManager service;
     private static Set<String> sEnabledApps;
@@ -271,11 +272,22 @@ public final class Dreamland {
         return version;
     }
 
+    public static String getVersionName() { return versionName; }
+
     /**
      * Called by Dreamland framework.
      */
-    @Keep private static void init(int version, IBinder service) {
-        Dreamland.version = version;
+    @Keep private static void init(String versionName, int versionCode, IBinder service) {
+        Dreamland.versionName = versionName;
+        Dreamland.version = versionCode;
         Dreamland.service = IDreamlandManager.Stub.asInterface(service);
+    }
+
+    /**
+     * Called by Dreamland framework.
+     * @deprecated This API only for Dreamland 2.0 beta.
+     */
+    @Keep @Deprecated private static void init(int version, IBinder service) {
+        init("2.0 beta", version, service);
     }
 }

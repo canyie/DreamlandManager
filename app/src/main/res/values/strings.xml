@@ -57,7 +57,7 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="no">No</string>
     <string name="shell_process_normal_exit">The script exits normally.</string>
     <string name="shell_process_unexpected_exit">The script exits unexpectedly: exit code %d.</string>
-    <string name="framework_state_active">Dreamland framework is active! (version %d)</string>
+    <string name="framework_state_active">Dreamland framework %s (%d) is active!</string>
     <string name="framework_state_safe_mode">Dreamland framework safe mode is enabled!</string>
     <string name="framework_state_installed_but_not_active">Dreamland framework is complete installed but not active.</string>
     <string name="framework_state_broken">Dreamland framework is broken! Please re-install or uninstall framework.</string>
