@@ -30,7 +30,7 @@ import top.canyie.dreamland.manager.utils.LazyInit;
             ? a.name.compareTo(b.name) : a.enabled ? -1 : 1;
 
     public static boolean isModule(PackageInfo pi) {
-        return pi.applicationInfo.metaData.getBoolean(XPOSED_MODULE, false);
+        return pi.applicationInfo.metaData.containsKey(XPOSED_MODULE);
     }
 
     public String name;

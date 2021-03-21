@@ -50,7 +50,7 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="install_or_update">Install/Update</string>
     <string name="uninstall">Uninstall</string>
     <string name="install_warning_title">Be careful!</string>
-    <string name="install_warning_content">Currently, Dreamland framework is not stable. Installation may permanently damage your device. It is not recommended for ordinary users to install and use. \nDo you want to continue the installation?</string>
+    <string name="install_warning_content">Dreamland framework is not stable. Installation may permanently damage your device. It is not recommended for ordinary users to install and use. \nDo you want to continue the installation?</string>
     <string name="str_continue">Continue</string>
     <string name="permission_request_rationale_title_for_install">Please grant permission</string>
     <string name="permission_request_rationale_message_for_install">We need storage permissions for download. \nGenerally, the external storage location (/sdcard/Android/&lt;package name&gt;/) that belongs to the application can be accessed without storage permissions, but some devices have privately modified this behavior, and cannot be used without storage permissions. Please grant these permissions for the app to function properly.</string>
@@ -75,7 +75,7 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="safemode_summary">If safe mode is enabled, only the core functions are enabled and no modules will be loaded.</string>
     <string name="global_mode">Global mode</string>
     <string name="global_mode_summary">Apply all enabled modules in almost all processes. You should not use this mode in most cases.</string>
-    <string name="resources_hook">Resources hook (Experimental features)</string>
+    <string name="resources_hook">Resources hook (Experimental feature)</string>
     <string name="resources_hook_summary">Enable experimental feature \"resources hook\". After enabling, some modules that require this feature (such as theming modules) will work.</string>
     <string name="framework_not_active">Dreamland framework is not active.</string>
     <string name="manager">Manager</string>
@@ -94,7 +94,7 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="uninstall_title">How to uninstall</string>
     <string name="uninstall_steps">Just uninstall the \"Riru-Dreamland\" module in Magisk Manager and restart your device, and the Dreamland framework will be uninstalled.</string>
     <string name="choose_browser">Choose browser</string>
-    <string name="download_channels_description">You will download a magisk module file, please flash it in Magisk Module or custom recovery.\n\nDescription of download channels:\nbeta: Test version, released by the developer.\ncanaey: Test version, automatically builded by CI, use of the version is at your own risk.\n</string>
+    <string name="download_channels_description">"You will download a magisk module file, please flash it in Magisk Module or custom recovery.  \n\nDescription of download channels: \nstable: Stable version, recommended for most users. Download this version from Magisk Manager.\nbeta: Test version, released by the developer. \ncanary: Test version, automatically builded by CI, use of the version is at your own risk. "</string>
     <string name="about_join_tg_group">Join my telegram group</string>
     <string name="about_tg_not_installed">Telegram not installed on the device.</string>
 

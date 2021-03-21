@@ -94,7 +94,7 @@
     <string name="uninstall_title">卸载步骤</string>
     <string name="uninstall_steps">只需要在Magisk Manager中卸载“Riru-Dreamland”模块并重启，框架就会被卸载。</string>
     <string name="choose_browser">请选择浏览器</string>
-    <string name="download_channels_description">你将会下载一个Magisk模块文件，下载完成后请在Magisk Manager或自定义Recovery中刷入它。\n\n下载通道说明：\nbeta：测试版本，由开发者不定期发布\ncanary：测试版本，由CI自动构建，使用风险自负</string>
+    <string name="download_channels_description">你将会下载一个Magisk模块文件，下载完成后请在Magisk Manager或自定义Recovery中刷入它。\n\n下载通道说明：\nstable: 稳定版本，建议大多数用户使用。你可以在Magisk Manager中下载它。\nbeta：测试版本，由开发者不定期发布\ncanary：测试版本，由CI自动构建，使用风险自负</string>
     <string name="about_join_tg_group">加入telegram群</string>
     <string name="about_tg_not_installed">此设备上没有安装telegram。</string>
 </resources>
