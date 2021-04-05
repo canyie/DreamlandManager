@@ -49,13 +49,13 @@ public final class Dreamland {
     }
 
     public static boolean isInstalled() {
+        if (CORE_JAR_FILE.exists()) return true;
         String soPath = (DeviceUtils.is64Bits() ? SYSTEM_LIB64_DIR : SYSTEM_LIB_DIR) + CORE_LIB_NAME;
-        return FileUtils.isExisting(soPath) || CORE_JAR_FILE.exists();
+        return FileUtils.isExisting(soPath);
     }
 
     public static boolean isCompleteInstalled() {
-        String soPath = (DeviceUtils.is64Bits() ? SYSTEM_LIB64_DIR : SYSTEM_LIB_DIR) + CORE_LIB_NAME;
-        return FileUtils.isExisting(soPath) && CORE_JAR_FILE.exists();
+        return CORE_JAR_FILE.exists();
     }
 
     public static boolean isSupported() {
