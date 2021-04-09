@@ -12,8 +12,8 @@
     <string name="verified_boot_state_active">引导验证程序已启用</string>
     <string name="verified_boot_state_not_detected">未检测到引导验证程序</string>
     <string name="selinux_mode_disabled">SELinux已禁用</string>
-    <string name="selinux_mode_permissive">SELinux运行在宽容模式！恶意程序可以借此完全控制您的设备！</string>
-    <string name="selinux_mode_enforcing">SELinux运行在强制模式</string>
+    <string name="selinux_mode_permissive">SELinux处于宽容模式！恶意程序可以借此完全控制您的设备！</string>
+    <string name="selinux_mode_enforcing">SELinux处于强制模式</string>
     <string name="about">关于</string>
     <string name="app_description">梦境框架是一个第三方的Xposed框架实现，支持Android 7.0~11。</string>
     <string name="about_my_blog">欢迎访问我的博客</string>
@@ -57,10 +57,10 @@
     <string name="no">No</string>
     <string name="shell_process_normal_exit">脚本已正常退出。</string>
     <string name="shell_process_unexpected_exit">脚本意外退出：退出代码 %d。</string>
-    <string name="framework_state_active">梦境框架 %s (%d) 已激活！</string>
-    <string name="framework_state_safe_mode">梦境框架安全模式已启用。</string>
-    <string name="framework_state_installed_but_not_active">梦境框架已被完整安装，但未激活。</string>
-    <string name="framework_state_broken">梦境框架核心文件已损坏，请重新安装或卸载框架。</string>
+    <string name="framework_state_active">已激活 %s (%d)</string>
+    <string name="framework_state_safe_mode">梦境框架安全模式已启用</string>
+    <string name="framework_state_installed_but_not_active">梦境框架已被完整安装，但未激活</string>
+    <string name="framework_state_broken">梦境框架核心文件已损坏，请重新安装或卸载框架</string>
     <string name="framework_state_not_installed">梦境框架未安装。</string>
     <string name="loading">正在加载……</string>
     <string name="install_issue">该设备暂不支持梦境框架（支持安卓版本最低7.0（SDK 24）并且CPU架构为arm-v7或arm64且为ART运行时）。</string>
