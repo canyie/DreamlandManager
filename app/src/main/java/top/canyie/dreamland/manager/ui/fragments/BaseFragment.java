@@ -101,10 +101,17 @@ public abstract class BaseFragment extends Fragment implements SwipeRefreshLayou
         if (mSwipeRefreshLayout != null) mSwipeRefreshLayout.setRefreshing(true);
         beforeLoadData();
         Runnable action = () -> {
-            Object data = loadDataImpl();
-            BaseActivity activity = (BaseActivity) getActivity();
-            if (activity != null)
-                activity.execOnUIThread(() -> updateUIForData(data));
+            try {
+                Object data = loadDataImpl();
+                BaseActivity activity = (BaseActivity) getActivity();
+                if (activity != null)
+                    activity.execOnUIThread(() -> updateUIForData(data));
+            } catch (Throwable t) {
+                Threads.execOnMainThread(() -> {
+                    throw new RuntimeException("Exception in loadDataImpl() of " + this, t);
+                });
+                throw t;
+            }
         };
         Future<?> future = Threads.getDefaultExecutor().submit(action);
         synchronized (mFutures) {
