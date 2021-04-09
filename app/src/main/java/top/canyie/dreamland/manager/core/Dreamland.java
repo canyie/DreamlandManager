@@ -274,6 +274,15 @@ public final class Dreamland {
 
     public static String getVersionName() { return versionName; }
 
+    public static boolean cannotHookSystemServer() {
+        try {
+            if (version < 2002) return false;
+            return service.cannotHookSystemServer();
+        } catch (RemoteException e) {
+            throw new RuntimeException("Failure from remote service", e);
+        }
+    }
+
     /**
      * Called by Dreamland framework.
      */

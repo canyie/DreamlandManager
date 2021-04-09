@@ -97,5 +97,6 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="download_channels_description">"You will download a magisk module file, please flash it in Magisk Module or custom recovery.  \n\nDescription of download channels: \nstable: Stable version, recommended for most users. Download this version from Magisk Manager.\nbeta: Test version, released by the developer. \ncanary: Test version, automatically builded by CI, use of the version is at your own risk. "</string>
     <string name="about_join_tg_group">Join my telegram group</string>
     <string name="about_tg_not_installed">Telegram not installed on the device.</string>
+    <string name="framework_state_partially_activated">Partially activated %s (%d), modules that hook \"android\" won\'t work</string>
 
 </resources>

@@ -51,6 +51,10 @@ public class StatusFragment extends PageFragment
      * Framework state: not installed
      */
     private static final int FRAMEWORK_STATE_NOT_INSTALLED = 4;
+    /**
+     * Framework state: Partially activated, cannot hook system server
+     */
+    private static final int FRAMEWORK_STATE_PARTIALLY_ACTIVATED = 5;
 
     private static final int PERMISSION_REQUEST_FOR_INSTALL = 1;
     private static final int PERMISSION_REQUEST_FOR_UNINSTALL = 2;
@@ -99,7 +103,13 @@ public class StatusFragment extends PageFragment
         info.versionName = Dreamland.getVersionName();
         info.versionCode = Dreamland.getVersion();
         if (Dreamland.isActive()) {
-            info.state = Dreamland.isSafeMode() ? FRAMEWORK_STATE_SAFE_MODE : FRAMEWORK_STATE_ACTIVE;
+            if (Dreamland.isSafeMode()) {
+                info.state = FRAMEWORK_STATE_SAFE_MODE;
+            } else if (Dreamland.cannotHookSystemServer()) {
+                info.state = FRAMEWORK_STATE_PARTIALLY_ACTIVATED;
+            } else {
+                info.state = FRAMEWORK_STATE_ACTIVE;
+            }
         } else if (Dreamland.isInstalled()) {
             info.state = Dreamland.isCompleteInstalled() ? FRAMEWORK_STATE_COMPLETE_INSTALLED : FRAMEWORK_STATE_BROKEN;
         } else {
@@ -139,6 +149,12 @@ public class StatusFragment extends PageFragment
                 break;
             case FRAMEWORK_STATE_SAFE_MODE:
                 text = getString(R.string.framework_state_safe_mode);
+                warning = true;
+                cardImageRes = R.drawable.ic_warning;
+                supported = true;
+                break;
+            case FRAMEWORK_STATE_PARTIALLY_ACTIVATED:
+                text = getString(R.string.framework_state_partially_activated, info.versionName, info.versionCode);
                 warning = true;
                 cardImageRes = R.drawable.ic_warning;
                 supported = true;
