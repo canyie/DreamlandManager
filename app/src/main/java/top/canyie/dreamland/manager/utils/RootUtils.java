@@ -6,6 +6,9 @@ import androidx.annotation.WorkerThread;
 
 import java.io.IOException;
 
+import top.canyie.dreamland.manager.utils.callbacks.ExceptionCallback;
+import top.canyie.dreamland.manager.utils.callbacks.ResultCallback;
+
 /**
  * @author canyie
  */
@@ -110,6 +113,13 @@ public final class RootUtils {
         if (code != Shell.EXIT_STATUS_SUCCESS) {
             throw new IOException("mv failed: code " + code);
         }
+    }
+
+    public static void execDex(String dex, String className, ResultCallback<Shell.Result> resultCallback, ExceptionCallback<IOException> exceptionCallback) {
+        Shell.su()
+                .add("app_process /system/bin " + className)
+                .env("CLASSPATH", dex)
+                .startAsync(resultCallback, exceptionCallback);
     }
 
     private static String escape(String str) {

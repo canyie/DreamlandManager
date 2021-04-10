@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.cardview.widget.CardView;
 import top.canyie.dreamland.manager.R;
 import top.canyie.dreamland.manager.core.DownloadChannel;
 import top.canyie.dreamland.manager.core.Dreamland;
+import top.canyie.dreamland.manager.ui.activities.TroubleShootActivity;
 import top.canyie.dreamland.manager.utils.DLog;
 import top.canyie.dreamland.manager.utils.DeviceUtils;
 import top.canyie.dreamland.manager.utils.Dialogs;
@@ -63,7 +65,7 @@ public class StatusFragment extends PageFragment
     private ImageView statusImage;
     private TextView verifiedBootStateText;
     private TextView seLinuxModeText;
-    private CardView installCard, uninstallCard;
+    private CardView installCard, uninstallCard, troubleshootCard;
     private TextView installIssueText;
 
     public StatusFragment() {
@@ -96,6 +98,8 @@ public class StatusFragment extends PageFragment
         uninstallCard = requireView(R.id.uninstall_card);
         uninstallCard.setOnClickListener(this);
         installIssueText = requireView(R.id.install_know_issue);
+        troubleshootCard = requireView(R.id.troubleshoot);
+        troubleshootCard.setOnClickListener(this);
     }
 
     @Override protected I loadDataImpl() {
@@ -220,6 +224,7 @@ public class StatusFragment extends PageFragment
         if (supported) {
             installCard.setVisibility(View.VISIBLE);
             uninstallCard.setVisibility(View.VISIBLE);
+            troubleshootCard.setVisibility(View.VISIBLE);
             installIssueText.setVisibility(View.GONE);
         } else {
             installCard.setVisibility(View.GONE);
@@ -247,6 +252,9 @@ public class StatusFragment extends PageFragment
                         .negativeButton(R.string.cancel, null)
                         .positiveButton(R.string.str_continue, dialogInfo -> onUninstall())
                         .showIfActivityActivated();
+                break;
+            case R.id.troubleshoot:
+                startActivity(new Intent(requireActivity(), TroubleShootActivity.class));
                 break;
             default:
                 throw new IllegalStateException("Unexpected view id: " + v.getId());

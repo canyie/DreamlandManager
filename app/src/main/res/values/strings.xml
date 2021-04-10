@@ -98,5 +98,8 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="about_join_tg_group">Join my telegram group</string>
     <string name="about_tg_not_installed">Telegram not installed on the device.</string>
     <string name="framework_state_partially_activated">Partially activated %s (%d), modules that hook \"android\" won\'t work</string>
+    <string name="maybe_no_root">Have you granted root permission?</string>
+    <string name="script_exited_with_code">- Exited with code %d</string>
+    <string name="troubleshoot">Troobleshoot</string>
 
 </resources>

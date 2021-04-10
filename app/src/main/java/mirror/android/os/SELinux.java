@@ -13,6 +13,7 @@ public final class SELinux {
     public static final Reflection.MethodWrapper isSELinuxEnforced = REF.method("isSELinuxEnforced");
     public static final Reflection.MethodWrapper getContext = REF.method("getContext");
     public static final Reflection.MethodWrapper getFileContext = REF.method("getFileContext", String.class);
+    public static final Reflection.MethodWrapper checkSELinuxAccess = REF.method("checkSELinuxAccess", String.class, String.class, String.class, String.class);
 
     private SELinux() {
         throw new InstantiationError("Mirror class mirror.android.os.SELinux");

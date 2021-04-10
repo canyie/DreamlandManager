@@ -354,7 +354,7 @@ public final class Shell {
     }
 
     static Result exec(@NonNull List<String> commands,  @Nullable Map<String, String> env, @Nullable File workDir, boolean isRoot, boolean allowOnMainThread) throws IOException {
-        if (Threads.isMainThread() && !allowOnMainThread) {
+        if (!allowOnMainThread && Threads.isMainThread()) {
             RuntimeException e = new RuntimeException("Calling Shell.exec on main thread. This is a time consuming operation and may cause the main thread to block.");
             DLog.e(TAG, e.getMessage(), e);
             throw e;

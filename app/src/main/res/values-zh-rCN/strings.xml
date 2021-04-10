@@ -98,4 +98,7 @@
     <string name="about_join_tg_group">加入telegram群</string>
     <string name="about_tg_not_installed">此设备上没有安装telegram。</string>
     <string name="framework_state_partially_activated">部分激活 %s (%d)，作用于\"android\"的模块将无法工作</string>
+    <string name="maybe_no_root">您是否授予了Root权限？</string>
+    <string name="script_exited_with_code">- 退出代码 %d</string>
+    <string name="troubleshoot">错误诊断</string>
 </resources>
