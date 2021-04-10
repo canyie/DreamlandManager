@@ -7,20 +7,14 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
 import top.canyie.dreamland.manager.utils.Preconditions;
-import com.google.gson.Gson;
 
 /**
  * @author canyie
  */
 public final class AppGlobals {
-    private static final Gson GSON = new Gson();
     private static Application APP;
     private static SharedPreferences defaultConfigSP;
     private AppGlobals() {
-    }
-
-    public static Gson getGson() {
-        return GSON;
     }
 
     public static void setApp (@NonNull Application app) {
