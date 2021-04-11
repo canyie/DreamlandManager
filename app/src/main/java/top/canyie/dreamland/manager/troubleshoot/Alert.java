@@ -36,9 +36,10 @@ public enum Alert {
     DISABLED_1("Please delete the file /data/misc/dreamland/disable and restart the device", "请删除文件 /data/misc/dreamland/disable 并重新启动此设备"),
 
     SEPOLICY_NOT_LOADED_0("SEPolicy patch rules not loaded properly by Magisk", "SEPolicy修补规则未被 Magisk 正确加载"),
-    SEPOLICY_NOT_LOADED_1("Please try upgrading Magisk to the latest canary version,", "请尝试更新Magisk到最新的canary版本，"),
-    SEPOLICY_NOT_LOADED_2("re-install Magisk, Riru and Dreamland", "重新安装Magisk，Riru和梦境框架"),
-    SEPOLICY_NOT_LOADED_3("or, report this problem to Magisk", "或将此问题报告给Magisk"),
+    SEPOLICY_NOT_LOADED_1("Please try to reboot twice,", "请尝试重启至少两次，"),
+    SEPOLICY_NOT_LOADED_2("try upgrading Magisk to the latest canary version,", "更新Magisk到最新的canary版本，"),
+    SEPOLICY_NOT_LOADED_3("re-install Magisk, Riru and Dreamland", "重新安装Magisk，Riru和梦境框架"),
+    SEPOLICY_NOT_LOADED_4("or, report this problem to Magisk", "或将此问题报告给Magisk"),
 
     WRONG_RIRU_SECONTEXT_0("Riru libs have wrong SELinux permission or context", "Riru 库存在错误的权限或 SELinux 上下文"),
     WRONG_RIRU_SECONTEXT_1("If re-install Riru and Dreamland cannot solve this problem, ", "如果重新安装 Riru 和梦境框架无法解决此问题，"),
