@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import mirror.android.os.SystemProperties;
 
 /**
- * @author canyie\
+ * @author canyie
  */
 @SuppressWarnings("WeakerAccess") public final class DeviceUtils {
     @SuppressWarnings("deprecation")
@@ -60,25 +60,7 @@ import mirror.android.os.SystemProperties;
         if (!Build.BRAND.equals(Build.MANUFACTURER)) {
             sb.append(' ').append(Character.toUpperCase(Build.BRAND.charAt(0))).append(Build.BRAND.substring(1));
         }
-        sb.append(' ').append(Build.MODEL).append(' ');
-        boolean isMIUI = false;
-        boolean isTouchWiz = false;
-        if ("xiaomi".equalsIgnoreCase(Build.MANUFACTURER) &&
-                FileUtils.isExisting("/system/framework/framework-miui-res.apk")) {
-            isMIUI = true;
-        } else if ("Samsung".equalsIgnoreCase(Build.MANUFACTURER) &&
-                FileUtils.isExisting("/system/framework/twframework.jar")) {
-            isTouchWiz = true;
-        }
-
-        if (isMIUI) {
-            sb.append("(MIUI)");
-        } else if (isTouchWiz) {
-            sb.append("(TouchWiz)");
-        } else {
-            sb.append("(AOSP-based ROM)");
-        }
-
+        sb.append(' ').append(Build.MODEL);
         return sb.toString();
     }
 
