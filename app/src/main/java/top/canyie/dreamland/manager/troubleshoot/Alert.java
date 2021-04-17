@@ -11,7 +11,7 @@ public enum Alert {
     POUNDS("*************************"),
     RUN_AS_ROOT("Troubleshooter should run as root", "请以 root 身份运行错误诊断"),
     MAGISK_ERROR("Magisk occurs error, please try upgrading Magisk to the latest version", "Magisk 发生错误，请尝试更新到最新版本"),
-    FOUND_PROBLEM("Found problem: ", "找到问题："),
+    FOUND_PROBLEM("Found %d problems: ", "找到 %d 个问题："),
 
     MAGISK_TMP_PATH_IS("Magisk tmpfs path is %s", "Magisk 根路径为 %s"),
 
@@ -47,12 +47,17 @@ public enum Alert {
     WRONG_RIRU_SECONTEXT_3("please ask your ROM maintainer not to do this or switch to other ROMs.", "请告诉该ROM维护者删除这些错误规则或选择其他ROM"),
     WRONG_RIRU_SECONTEXT_4("For more information, please visit https://github.com/RikkaApps/Riru/issues/203", "有关更多信息，请访问 https://github.com/RikkaApps/Riru/issues/203"),
 
-    NO_PROBLEM("No problems determined", "错误诊断未能确定问题");
+    MAPLE_ENABLED_0("Huawei maple (maybe ark compiler's engine?) is enabled", "华为 maple （方舟编译器环境？）已启用"),
+    MAPLE_ENABLED_1("This may cause Riru not work properly", "这可能会造成 Riru 工作异常"),
+    MAPLE_ENABLED_2("Try upgrade to the latest Riru", "尝试更新到最新的 Riru"),
+    MAPLE_ENABLED_3("or disable huawei maple by add ro.maple.enable=0", "或添加 ro.maple.enable=0 以禁用 maple"),
+
+    NO_PROBLEM("No problems determined, try install Riru app to detect Riru problems", "错误诊断未能确定问题，请尝试安装 Riru app 以检测 Riru 问题");
 
     @SuppressLint("ConstantLocale")
     private static final boolean CHINESE = "zh".equalsIgnoreCase(Locale.getDefault().getLanguage());
 
-    private String english, chinese;
+    private final String english, chinese;
 
     Alert(String one) {
         this.english = this.chinese = one;

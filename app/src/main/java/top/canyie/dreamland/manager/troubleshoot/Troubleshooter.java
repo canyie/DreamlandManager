@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mirror.android.os.SELinux;
+import mirror.android.os.SystemProperties;
 import top.canyie.dreamland.manager.utils.Shell;
 
 import static android.os.Process.SYSTEM_UID;
@@ -126,6 +127,15 @@ public class Troubleshooter {
         checkPermissionRecursive(riruLib, 0755, 0644, 0, 0, "u:object_r:system_file:s0", problems, AlertList.WRONG_RIRU_SECONTEXT);
     }
 
+    // If Huawei maple is enabled,
+    // system server is forked from "mygote" (a special zygote process) that can't be controlled by Riru V22+
+    private static void detectMaple(List<AlertList> problems) {
+        // TODO: Maybe we should check persist.mygote.disable and init.svc.mygote here?
+        if ("1".equals(SystemProperties.get.callStatic("ro.maple.enable", "0"))) {
+            problems.add(AlertList.MAPLE_ENABLED);
+        }
+    }
+
     @Keep public static void main(String[] args) {
         if (Process.myUid() != 0) {
             abort(Alert.RUN_AS_ROOT);
@@ -138,12 +148,13 @@ public class Troubleshooter {
         detectDreamland(problems);
         checkSEPolicy(problems);
         if (modules != null) checkSEContext(modules, problems);
+        detectMaple(problems);
 
         if (problems.isEmpty()) {
             Alert.POUNDS.show();
             Alert.NO_PROBLEM.show();
         } else {
-            Alert.FOUND_PROBLEM.showAsError();
+            Alert.FOUND_PROBLEM.showAsError(problems.size());
             for (AlertList alertList : problems) {
                 alertList.showAsError();
             }
