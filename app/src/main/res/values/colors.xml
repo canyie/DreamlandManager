@@ -4,10 +4,16 @@
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorAccent">#448AFF</color>
     <color name="color_loading">@color/colorPrimary</color>
+
     <color name="color_active">#4CAF50</color>
     <color name="color_active_dark">#388E3C</color>
+
     <color name="color_warning">#FFC107</color>
     <color name="color_warning_dark">#FBC02D</color>
+
     <color name="color_error">#F44336</color>
     <color name="color_error_dark">#D32F2F</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
 </resources>
