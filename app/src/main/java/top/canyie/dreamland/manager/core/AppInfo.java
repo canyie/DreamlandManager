@@ -5,18 +5,23 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.Keep;
-import androidx.annotation.NonNull;
 
 import java.util.Comparator;
-
-import top.canyie.dreamland.manager.AppGlobals;
 
 /**
  * @author canyie
  */
 @Keep public class AppInfo {
-    public static final Comparator<AppInfo> COMPARATOR = (a, b) -> a.enabled == b.enabled
-            ? a.name.compareTo(b.name) : a.enabled ? -1 : 1;
+    public static final Comparator<AppInfo> COMPARATOR = (a, b) -> {
+        if (a.enabled != b.enabled)
+            return a.enabled ? -1 : 1;
+        if ("android".equals(a.packageName)) {
+            return "android".equals(b.packageName) ? 0 : -1;
+        } else if ("android".equals(b.packageName)) {
+            return 1;
+        }
+        return a.name.compareTo(b.name);
+    };
 
     public String name;
     public String packageName;
@@ -35,5 +40,4 @@ import top.canyie.dreamland.manager.AppGlobals;
         enabled = enable;
         Dreamland.setAppEnabled(packageName, enable);
     }
-
 }
