@@ -72,7 +72,12 @@ public class ModuleListAdapter extends RecyclerView.Adapter<ModuleListAdapter.Vi
                 if (mModuleStateChangedListener != null)
                     mModuleStateChangedListener.onModuleStateChanged();
             });
-            holder.error.setVisibility(View.GONE);
+            if (module.maybeLowQuality) {
+                holder.error.setText(R.string.module_low_quality);
+                holder.error.setVisibility(View.VISIBLE);
+            } else {
+                holder.error.setVisibility(View.GONE);
+            }
         } else {
             holder.error.setText(R.string.module_error_not_support);
             holder.error.setVisibility(View.VISIBLE);

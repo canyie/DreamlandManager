@@ -22,6 +22,7 @@ import top.canyie.dreamland.manager.utils.LazyInit;
  */
 @Keep public final class ModuleInfo {
     private static final String XPOSED_MODULE = "xposedmodule";
+    private static final String XPOSED_MIN_VERSION = "xposedminversion";
     private static final String XPOSED_MODULE_DESCRIPTION = "xposeddescription";
     private static final String XPOSED_DEFAULT_SCOPE = "xposedscope"; // Added by LSPosed
     private static final String DREAMLAND_MODULE_SUPPORTED = "dreamland-supported";
@@ -30,7 +31,17 @@ import top.canyie.dreamland.manager.utils.LazyInit;
             ? a.name.compareTo(b.name) : a.enabled ? -1 : 1;
 
     public static boolean isModule(PackageInfo pi) {
-        return pi.applicationInfo.metaData.containsKey(XPOSED_MODULE);
+        return pi.applicationInfo.metaData.containsKey(XPOSED_MIN_VERSION);
+    }
+
+    public static boolean badModule(PackageInfo pi) {
+        // Official doc requires `xposedmodule`=`true` but in the previous implementation there was
+        // no judgment on what the value was, even if `false`.
+        // But, if a module not strictly following the doc, we think its quality is questionable.
+
+        Object isModule = pi.applicationInfo.metaData.get(XPOSED_MODULE);
+        if (!(isModule instanceof Boolean)) return true;
+        return !(Boolean) isModule;
     }
 
     public String name;
@@ -42,6 +53,7 @@ import top.canyie.dreamland.manager.utils.LazyInit;
     public boolean supported;
     public boolean enabled;
     public String[] defaultScope;
+    public boolean maybeLowQuality;
 
     ModuleInfo(String packageName, boolean enabled) {
         this.packageName = packageName;
@@ -88,6 +100,8 @@ import top.canyie.dreamland.manager.utils.LazyInit;
                 }
             }
         }
+
+        maybeLowQuality = badModule(pi);
     }
 
     public void setEnabled(boolean enable) {

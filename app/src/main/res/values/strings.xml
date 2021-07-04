@@ -101,5 +101,6 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="maybe_no_root">Have you granted root permission?</string>
     <string name="script_exited_with_code">- Exited with code %d</string>
     <string name="troubleshoot">Troobleshoot</string>
+    <string name="module_low_quality">This module doesn\'t comply with Xposed module dev doc, we think its quality is questionable.</string>
 
 </resources>

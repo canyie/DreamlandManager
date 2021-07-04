@@ -101,4 +101,5 @@
     <string name="maybe_no_root">您是否授予了Root权限？</string>
     <string name="script_exited_with_code">- 退出代码 %d</string>
     <string name="troubleshoot">错误诊断</string>
+    <string name="module_low_quality">未遵守Xposed模块官方开发文档，质量存疑</string>
 </resources>
