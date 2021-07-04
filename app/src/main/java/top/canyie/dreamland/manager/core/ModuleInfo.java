@@ -98,6 +98,10 @@ import top.canyie.dreamland.manager.utils.LazyInit;
                     Log.e(Dreamland.TAG, "Failed to parse default scope resource 0x"
                             + Integer.toHexString(defScopeResId) + " for module " + name, e);
                 }
+            } else {
+                String scopeListString = pi.applicationInfo.metaData.getString(XPOSED_DEFAULT_SCOPE);
+                if (scopeListString != null)
+                    defaultScope = scopeListString.split(";");
             }
         }
 
