@@ -2,31 +2,27 @@ package top.canyie.dreamland.manager.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import top.canyie.dreamland.manager.R;
-import top.canyie.dreamland.manager.core.Dreamland;
-import top.canyie.dreamland.manager.ui.adapters.MainPagerAdapter;
-import top.canyie.dreamland.manager.ui.fragments.AppManagerFragment;
-import top.canyie.dreamland.manager.ui.fragments.StatusFragment;
-import top.canyie.dreamland.manager.ui.fragments.ModuleManagerFragment;
-import top.canyie.dreamland.manager.ui.fragments.PageFragment;
-import top.canyie.dreamland.manager.utils.Dialogs;
-import top.canyie.dreamland.manager.utils.RootUtils;
-import com.google.android.material.tabs.TabLayout;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+import com.google.android.material.tabs.TabLayout;
 
-import java.util.Locale;
+import top.canyie.dreamland.manager.R;
+import top.canyie.dreamland.manager.core.Dreamland;
+import top.canyie.dreamland.manager.ui.adapters.MainPagerAdapter;
+import top.canyie.dreamland.manager.ui.fragments.AppManagerFragment;
+import top.canyie.dreamland.manager.ui.fragments.ModuleManagerFragment;
+import top.canyie.dreamland.manager.ui.fragments.PageFragment;
+import top.canyie.dreamland.manager.ui.fragments.StatusFragment;
+import top.canyie.dreamland.manager.utils.Dialogs;
+import top.canyie.dreamland.manager.utils.RootUtils;
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, SearchView.OnQueryTextListener {
     private static final String TAG = "MainActivity";
@@ -41,8 +37,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private MenuItem mSearchMenuItem;
 
     @Override protected void initLayout(Bundle savedInstanceState) {
-        Toolbar toolbar = requireView(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = requireView(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         mViewPager = requireView(R.id.pager);
         FragmentManager fm = getSupportFragmentManager();

@@ -18,16 +18,16 @@ import androidx.annotation.WorkerThread;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.Future;
+
 import top.canyie.dreamland.manager.R;
 import top.canyie.dreamland.manager.ui.activities.BaseActivity;
 import top.canyie.dreamland.manager.utils.Preconditions;
 import top.canyie.dreamland.manager.utils.Threads;
 import top.canyie.dreamland.manager.utils.ToastCompat;
 import top.canyie.dreamland.manager.utils.ViewFinder;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.Future;
 
 /**
  * @author canyie
