@@ -248,7 +248,8 @@ public class StatusFragment extends PageFragment
                 break;
             case R.id.uninstall_card:
                 Dialogs.create(requireActivity())
-                        .title(R.string.uninstall_alert)
+                        .title(R.string.install_warning_title)
+                        .message(R.string.uninstall_alert)
                         .negativeButton(R.string.cancel, null)
                         .positiveButton(R.string.str_continue, dialogInfo -> onUninstall())
                         .showIfActivityActivated();
