@@ -21,7 +21,6 @@ import androidx.cardview.widget.CardView;
 import top.canyie.dreamland.manager.R;
 import top.canyie.dreamland.manager.core.DownloadChannel;
 import top.canyie.dreamland.manager.core.Dreamland;
-import top.canyie.dreamland.manager.ui.activities.MainActivity;
 import top.canyie.dreamland.manager.ui.activities.TroubleShootActivity;
 import top.canyie.dreamland.manager.utils.DLog;
 import top.canyie.dreamland.manager.utils.DeviceUtils;
