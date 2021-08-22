@@ -16,14 +16,14 @@ android {
         versionName "0.0.7"
     }
 
-    /*signingConfigs {
+    signingConfigs {
         release {
             storeFile file(properties['key.file'])
             storePassword properties['key.password']
             keyAlias properties['key.alias']
             keyPassword properties['key.alias.password']
         }
-    }*/
+    }
     buildTypes {
         debug {
             minifyEnabled false
@@ -33,7 +33,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
     }
 
