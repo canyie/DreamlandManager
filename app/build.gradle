@@ -39,8 +39,14 @@ android {
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError true
+        checkAllWarnings true
     }
 }
 
@@ -54,4 +60,5 @@ dependencies {
     //implementation 'com.squareup.okio:okio:1.17.5'
     //implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.medyo:android-about-page:1.2.5'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.2'
 }
