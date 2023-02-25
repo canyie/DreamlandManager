@@ -6,11 +6,12 @@ android {
     properties.load(inputStream)
     inputStream.close()
 
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 33
+    buildToolsVersion "33.0.2"
     defaultConfig {
         applicationId "top.canyie.dreamland.manager"
-        minSdkVersion 24
+        minSdkVersion 21
+        // noinspection ExpiredTargetSdkVersion
         targetSdkVersion 29
         versionCode 7
         versionName "0.0.7"
