@@ -63,7 +63,7 @@ If this does not resolve the issue, please use the device\'s reboot function.</s
     <string name="framework_state_broken">Dreamland framework is broken! Please re-install or uninstall framework</string>
     <string name="framework_state_not_installed">Dreamland framework is not installed</string>
     <string name="loading">loading…</string>
-    <string name="install_issue">The device does not currently support the dreamland framework (required min android version 7.0(SDK 24) and cpu arch is arm-v7 or arm64 and ART runtime).</string>
+    <string name="install_issue">The device does not currently support the dreamland framework (required min android version 5.0(SDK 21) and cpu arch is arm-v7 or arm64 and ART runtime).</string>
     <string name="alert_wait_framework_download_complete">Please wait framework zip download complete…</string>
     <string name="alert_framework_zip_download_failed">Dreamland framework zip download failed.</string>
     <string name="uninstall_alert">You want to uninstall Dreamland framework? You will not be able to use the features provided by the Dreamland framework.</string>

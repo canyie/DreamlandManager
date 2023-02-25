@@ -63,7 +63,7 @@
     <string name="framework_state_broken">梦境框架核心文件已损坏，请重新安装或卸载框架</string>
     <string name="framework_state_not_installed">梦境框架未安装。</string>
     <string name="loading">正在加载……</string>
-    <string name="install_issue">该设备暂不支持梦境框架（支持安卓版本最低7.0（SDK 24）并且CPU架构为arm-v7或arm64且为ART运行时）。</string>
+    <string name="install_issue">该设备暂不支持梦境框架（支持安卓版本最低5.0（SDK 21）并且CPU架构为arm-v7或arm64且为ART运行时）。</string>
     <string name="alert_wait_framework_download_complete">请等待框架包下载完成……</string>
     <string name="alert_framework_zip_download_failed">梦境框架包下载失败。</string>
     <string name="uninstall_alert">你要卸载梦境框架吗？这样将会失去梦境框架提供的功能。</string>

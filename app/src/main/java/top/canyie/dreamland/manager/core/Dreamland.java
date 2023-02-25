@@ -59,8 +59,8 @@ public final class Dreamland {
     }
 
     public static boolean isSupported() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                && Build.VERSION.SDK_INT <= Build.VERSION_CODES.R
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                && Build.VERSION.SDK_INT <= Build.VERSION_CODES.TIRAMISU
                 && DeviceUtils.isArmV7OrArm64();
     }
 
