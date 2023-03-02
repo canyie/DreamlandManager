@@ -10,6 +10,7 @@ import android.os.Build;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,10 +61,13 @@ public class StatusFragment extends PageFragment
 
     private static final int PERMISSION_REQUEST_FOR_INSTALL = 1;
     private static final int PERMISSION_REQUEST_FOR_UNINSTALL = 2;
+    private int dimenDeviceInfoItemHeight;
     private View statusCardBackground;
     private TextView statusText;
     private ImageView statusImage;
     private TextView verifiedBootStateText;
+    private LinearLayout selinuxStatusLinearLayout;
+    LinearLayout.LayoutParams selinuxStatusLinearLayoutParams;
     private TextView seLinuxModeText;
     private CardView installCard, uninstallCard, troubleshootCard;
     private TextView installIssueText;
@@ -91,8 +95,12 @@ public class StatusFragment extends PageFragment
         TextView textCPUArch = requireView(R.id.device_info_cpu);
         textCPUArch.setText(getString(R.string.text_cpu_info, DeviceUtils.CPU_ABI, DeviceUtils.CPU_ARCH));
 
+        dimenDeviceInfoItemHeight = (int) requireContext().getResources().getDimension(R.dimen.device_info_item_height);
         verifiedBootStateText = requireView(R.id.device_info_verity_boot);
+        selinuxStatusLinearLayout = requireView(R.id.device_info_selinux_status_linenar_layout);
+        selinuxStatusLinearLayoutParams = (LinearLayout.LayoutParams) selinuxStatusLinearLayout.getLayoutParams();
         seLinuxModeText = requireView(R.id.device_info_selinux_mode);
+
         installCard = requireView(R.id.install_card);
         installCard.setOnClickListener(this);
         uninstallCard = requireView(R.id.uninstall_card);
@@ -212,14 +220,17 @@ public class StatusFragment extends PageFragment
 
         if (info.isSELinuxEnabled) {
             if (info.isSELinuxEnforced) {
+                selinuxStatusLinearLayoutParams.height = dimenDeviceInfoItemHeight;
                 seLinuxModeText.setText(R.string.selinux_mode_enforcing);
             } else {
+                selinuxStatusLinearLayoutParams.height = 2 * dimenDeviceInfoItemHeight;
                 seLinuxModeText.setText(R.string.selinux_mode_permissive);
                 seLinuxModeText.setTextColor(requireContext().getColor(R.color.color_error_dark));
             }
         } else {
             seLinuxModeText.setText(R.string.selinux_mode_disabled);
         }
+        selinuxStatusLinearLayout.setLayoutParams(selinuxStatusLinearLayoutParams);
 
         if (supported) {
             installCard.setVisibility(View.VISIBLE);
@@ -248,7 +259,8 @@ public class StatusFragment extends PageFragment
                 break;
             case R.id.uninstall_card:
                 Dialogs.create(requireActivity())
-                        .title(R.string.uninstall_alert)
+                        .title(R.string.install_warning_title)
+                        .message(R.string.uninstall_alert)
                         .negativeButton(R.string.cancel, null)
                         .positiveButton(R.string.str_continue, dialogInfo -> onUninstall())
                         .showIfActivityActivated();
