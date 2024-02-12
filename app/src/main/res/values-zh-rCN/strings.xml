@@ -11,14 +11,14 @@
     <string name="verified_boot_state_deactivated">引导验证程序已禁用</string>
     <string name="verified_boot_state_active">引导验证程序已启用</string>
     <string name="verified_boot_state_not_detected">未检测到引导验证程序</string>
-    <string name="selinux_mode_disabled">SELinux已禁用</string>
-    <string name="selinux_mode_permissive">SELinux处于宽容模式！恶意程序可以借此完全控制您的设备！</string>
-    <string name="selinux_mode_enforcing">SELinux处于强制模式</string>
+    <string name="selinux_mode_disabled">SELinux 已禁用</string>
+    <string name="selinux_mode_permissive">SELinux 处于宽容模式！恶意程序可以借此完全控制您的设备！</string>
+    <string name="selinux_mode_enforcing">SELinux 处于强制模式</string>
     <string name="about">关于</string>
-    <string name="app_description">梦境框架是一个第三方的Xposed框架实现，支持Android 7.0~11。</string>
+    <string name="app_description">梦境框架是一个第三方的 Xposed 框架实现，支持 Android 7.0~11。</string>
     <string name="about_my_blog">欢迎访问我的博客</string>
-    <string name="about_join_qq_group">加入QQ群</string>
-    <string name="about_alert_qq_is_unavailable">您没有安装QQ或者版本过低。</string>
+    <string name="about_join_qq_group">加入 QQ 群</string>
+    <string name="about_alert_qq_is_unavailable">您没有安装 QQ 或者版本过低。</string>
     <string name="about_version">管理器版本号：%s(%d)</string>
     <string name="module_error_not_support">暂不支持，请尝试更新此模块或联系它的开发者。</string>
     <string name="alert_app_cannot_open">此应用没有主界面，所以无法启动。</string>
@@ -27,14 +27,14 @@
     <string name="module_action_info">模块信息</string>
     <string name="module_action_uninstall">卸载</string>
     <string name="about_thanks">致谢</string>
-    <string name="about_thanks_alert_content">感谢原版Xposed作者rovo89；感谢LMFuture提供的图标；还有许许多多的小伙伴在帮助我，谢谢你们 :)</string>
+    <string name="about_thanks_alert_content">感谢原版 Xposed 作者 rovo89；感谢 LMFuture 提供的图标；还有许许多多的小伙伴在帮助我，谢谢你们 :)</string>
     <string name="ok">好的</string>
     <string name="alert_wait_loading_complete">客官不要心急，还没加载完呢……</string>
     <string name="action_reboot">重启</string>
     <string name="action_soft_reboot">软重启</string>
     <string name="action_reboot_to_recovery">重启至恢复模式</string>
     <string name="reboot_failed_alert_message">重启失败。请检查以下项目：\n\n
-        您是否已经授予Root权限？\n\n
+        您是否已经授予 Root 权限？\n\n
 如果无法解决此问题，请使用设备的重启功能。</string>
     <string name="reboot_failed_alert_title">重启失败</string>
     <string name="reboot_confirm_alert">您要现在重启您的设备吗？</string>
@@ -63,13 +63,13 @@
     <string name="framework_state_broken">梦境框架核心文件已损坏，请重新安装或卸载框架</string>
     <string name="framework_state_not_installed">梦境框架未安装。</string>
     <string name="loading">正在加载……</string>
-    <string name="install_issue">该设备暂不支持梦境框架（支持安卓版本最低5.0（SDK 21）并且CPU架构为arm-v7或arm64且为ART运行时）。</string>
+    <string name="install_issue">该设备暂不支持梦境框架（支持安卓版本最低 5.0（SDK 21）并且 CPU 架构为 arm-v7 或 arm64 且为 ART 运行时）。</string>
     <string name="alert_wait_framework_download_complete">请等待框架包下载完成……</string>
     <string name="alert_framework_zip_download_failed">梦境框架包下载失败。</string>
     <string name="uninstall_alert">你要卸载梦境框架吗？这样将会失去梦境框架提供的功能。</string>
     <string name="install_error_bad_zip">此框架包已损坏。</string>
     <string name="safe_mode">安全模式</string>
-    <string name="answer_to_qq_group_question">QQ群入群问题：canyie</string>
+    <string name="answer_to_qq_group_question">QQ 群入群问题：canyie</string>
     <string name="settings">设置</string>
     <string name="framework">框架</string>
     <string name="safemode_summary">如果安全模式已启用，那么只运行核心功能，不会加载任何模块。</string>
@@ -83,7 +83,7 @@
     <string name="module_activation_scope">模块作用域</string>
     <string name="save">保存</string>
     <string name="enable_mas">启用模块作用域</string>
-    <string name="mas_alert">“模块作用域”机制可以使Xposed模块们仅在某些应用生效，但这并非绝对；模块仍有可能通过控制某应用影响其他应用。</string>
+    <string name="mas_alert">“模块作用域”机制可以使 Xposed 模块们仅在某些应用生效，但这并非绝对；模块仍有可能通过控制某应用影响其他应用。</string>
     <string name="changes_saved">您的更改已保存。</string>
     <string name="mas_exit_alert">您想要退出编辑吗？您的编辑将不会被保存。</string>
     <string name="save_and_exit">保存并退出</string>
@@ -92,14 +92,14 @@
     <string name="required_for_module">该模块需要注入此应用。</string>
     <string name="select_download_channel">选择下载通道…</string>
     <string name="uninstall_title">卸载步骤</string>
-    <string name="uninstall_steps">只需要在Magisk Manager中卸载“Riru-Dreamland”模块并重启，框架就会被卸载。</string>
+    <string name="uninstall_steps">只需要在 Magisk Manager 中卸载“Riru-Dreamland”模块并重启，框架就会被卸载。</string>
     <string name="choose_browser">请选择浏览器</string>
-    <string name="download_channels_description">你将会下载一个Magisk模块文件，下载完成后请在Magisk Manager或自定义Recovery中刷入它。\n\n下载通道说明：\nstable: 稳定版本，建议大多数用户使用。你可以在Magisk Manager中下载它。\nbeta：测试版本，由开发者不定期发布\ncanary：测试版本，由CI自动构建，使用风险自负</string>
-    <string name="about_join_tg_group">加入telegram群</string>
-    <string name="about_tg_not_installed">此设备上没有安装telegram。</string>
+    <string name="download_channels_description">你将会下载一个 Magisk 模块文件，下载完成后请在 Magisk Manager 或自定义 Recovery 中刷入它。\n\n下载通道说明：\nstable: 稳定版本，建议大多数用户使用。你可以在 Magisk Manager 中下载它。\nbeta：测试版本，由开发者不定期发布\ncanary：测试版本，由 CI 自动构建，使用风险自负</string>
+    <string name="about_join_tg_group">加入 Telegram 群</string>
+    <string name="about_tg_not_installed">此设备上没有安装 Telegram。</string>
     <string name="framework_state_partially_activated">部分激活 %s (%d)，作用于\"android\"的模块将无法工作</string>
-    <string name="maybe_no_root">您是否授予了Root权限？</string>
+    <string name="maybe_no_root">您是否授予了 Root 权限？</string>
     <string name="script_exited_with_code">- 退出代码 %d</string>
     <string name="troubleshoot">错误诊断</string>
-    <string name="module_low_quality">未遵守Xposed模块官方开发文档，质量存疑</string>
+    <string name="module_low_quality">未遵守 Xposed 模块官方开发文档，质量存疑</string>
 </resources>

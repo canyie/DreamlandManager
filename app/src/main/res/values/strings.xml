@@ -15,7 +15,7 @@
     <string name="selinux_mode_permissive">SELinux mode is permissive! Malicious programs can take full control of your device!</string>
     <string name="selinux_mode_enforcing">SELinux mode is enforcing</string>
     <string name="about">About</string>
-    <string name="app_description">Dreamland Framework: A third-party Xposed framework， supports Android 7.0~11.</string>
+    <string name="app_description">Dreamland Framework: A third-party Xposed framework, supports Android 7.0~11.</string>
     <string name="about_my_blog">Visit my blog</string>
     <string name="about_join_qq_group">Join my QQ group</string>
     <string name="about_alert_qq_is_unavailable">You do not have QQ installed or the version is too low.</string>
