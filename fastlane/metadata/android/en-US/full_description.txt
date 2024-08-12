@@ -1,0 +1,9 @@
+Installer and manager of the Dreamland framework.
+NOTE: Dreamland framework is not stable now. If you are a regular user, please don't install it!
+Dreamland is a Xposed framework implementation, you can use it to use Xposed modules.
+<ul>
+<li>Supports Android 5.0~<strong>14</strong></li>
+<li>Low invasiveness</li>
+<li>For hooking third apps, only requires restart the target app, not the device</li>
+<li>Strictly restrict modules, you can choose which apps need to load which modules</li>
+</ul>
