@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -85,7 +86,7 @@ public class MaseListAdapter extends RecyclerView.Adapter implements Filterable 
             if (appInfo.required) {
                 itemHolder.appNotice.setVisibility(View.VISIBLE);
                 itemHolder.appNotice.setText(R.string.required_for_module);
-                itemHolder.appNotice.setTextColor(mCtx.getColor(R.color.colorAccent));
+                itemHolder.appNotice.setTextColor(ContextCompat.getColor(mCtx, R.color.colorAccent));
             } else {
                 itemHolder.appNotice.setVisibility(View.GONE);
             }
