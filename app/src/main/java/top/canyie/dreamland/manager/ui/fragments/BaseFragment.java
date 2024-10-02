@@ -1,6 +1,7 @@
 package top.canyie.dreamland.manager.ui.fragments;
 
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -145,7 +146,11 @@ public abstract class BaseFragment extends Fragment implements SwipeRefreshLayou
     }
 
     public boolean checkSelfPermission(String permission) {
-        return requireActivity().checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return requireActivity().checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
+        } else {
+            return true;
+        }
     }
 
     public boolean onSearchViewOpen(View v) {
