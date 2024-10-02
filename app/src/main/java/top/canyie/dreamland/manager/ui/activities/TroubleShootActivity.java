@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
 
@@ -85,7 +86,7 @@ public class TroubleShootActivity extends BaseActivity implements ResultCallback
     }
 
     private void appendText(CharSequence text, boolean error) {
-        final ForegroundColorSpan colorSpan = error ? new ForegroundColorSpan(getColor(R.color.color_error)) : null;
+        final ForegroundColorSpan colorSpan = error ? new ForegroundColorSpan(ContextCompat.getColor(this, R.color.color_error)) : null;
         Threads.execOnMainThread(() -> {
             Editable editable = mConsole.getEditableText();
             if (colorSpan != null) {
